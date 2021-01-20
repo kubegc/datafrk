@@ -2,10 +2,10 @@
 
  * Copyright (2019, ) Institute of Software, Chinese Academy of Sciences
  */
-package com.github.sql.clients;
+package com.github.kubesys.sql.clients;
 
 import com.alibaba.druid.pool.DruidPooledConnection;
-import com.github.sql.KubeSQLClient;
+import com.github.kubesys.sql.KubeSQLClient;
 
 /**
  * @author wuheng@otcaix.iscas.ac.cn
@@ -22,7 +22,7 @@ public class PostgreClient extends KubeSQLClient {
 
 	public static final String CHECK_TABLE = "select count(*) from pg_class where relname = '#TABLE#'";
 
-	public static final String CREATE_TABLE = "CREATE TABLE #TABLE# (name varchar(512), namespace varchar(128), "
+	public static final String CREATE_TABLE = "CREATE TABLE #TABLE# (name varchar(512), namespace varchar(128), time int8,"
 																+ "data json, primary key(name, namespace))";
 
 	private static final String CONDITION = " data#ITEM# like '%#VALUE#%' AND ";

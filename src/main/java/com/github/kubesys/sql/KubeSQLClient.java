@@ -2,7 +2,7 @@
 
  * Copyright (2019, ) Institute of Software, Chinese Academy of Sciences
  */
-package com.github.sql;
+package com.github.kubesys.sql;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -29,7 +29,8 @@ public abstract class KubeSQLClient {
 	
 	public static final Logger m_logger = Logger.getLogger(KubeSQLClient.class.getName());
 
-	public static final String DEFAULT_DB       = "kube";
+	public static final String DEFAULT_DB       = System.getenv("jdbcDB") == null 
+													? "kube" : System.getenv("jdbcDB");
 	
 	public static final String LABEL_DATABASE   = "#DATBASE#";
 	
@@ -39,15 +40,17 @@ public abstract class KubeSQLClient {
 	
 	public static final String LABEL_NAMESPACE  = "#NAMESPACE#";
 	
+	public static final String LABEL_TIME       = "#TIME#";
+	
 	public static final String LABEL_JSON       = "#JSON#";
 	
 	public static final String DELETE_DATABASE  = "DROP DATABASE #DATBASE#";
 	
 	public static final String DELETE_TABLE     = "DROP TABLE #TABLE#";
 	
-	public static final String INSERT_OBJECT    = "INSERT INTO #TABLE# VALUES ('#NAME#', '#NAMESPACE#', '#JSON#'::json)";
+	public static final String INSERT_OBJECT    = "INSERT INTO #TABLE# VALUES ('#NAME#', '#NAMESPACE#', '#TIME#' , '#JSON#'::json)";
 	
-	public static final String UPDATE_OBJECT    = "UPDATE #TABLE# SET data = '#JSON#'::json WHERE name = '#NAME#' and namespace = '#NAMESPACE#'";
+	public static final String UPDATE_OBJECT    = "UPDATE #TABLE# SET time = '#TIME#', data = '#JSON#'::json WHERE name = '#NAME#' and namespace = '#NAMESPACE#'";
 	
 	public static final String DELETE_OBJECT    = "DELETE FROM #TABLE# WHERE name = '#NAME#' and namespace = '#NAMESPACE#'";
 	
@@ -61,8 +64,6 @@ public abstract class KubeSQLClient {
 	
 	private static final String METADATA = "metadata";
 	
-	private static final String DB = System.getenv("jdbcDB") == null 
-								? "kube" : System.getenv("jdbcDB");
 	
 	/****************************************************************************
 	 * 
@@ -93,12 +94,12 @@ public abstract class KubeSQLClient {
 		if (!hasDatabase()) {
 			createDatabase();
 		}
+		String url = conn.getMetaData().getURL();
 		this.conn.close();
-		updateConn(database);
+		updateConn(url, database);
 	}
 
-	void updateConn(String database) throws SQLException {
-		String oldUrl = System.getenv("jdbcUrl") == null ? defaultUrl() : System.getenv("jdbcUrl");
+	void updateConn(String oldUrl, String database) throws SQLException {
 		int stx = oldUrl.indexOf("/", getUrlPrefix().length());
 		int etx = oldUrl.indexOf("?");
 		String newUrl = etx == - 1 ? oldUrl.substring(0, stx + 1) + database :
@@ -197,17 +198,19 @@ public abstract class KubeSQLClient {
 	 * @param table                                  table
 	 * @param name                                   name
 	 * @param namespace                              namespace
+	 * @param time                                   time
 	 * @param json                                   json
 	 * @return                                       true or false
 	 * @throws Exception                             exception
 	 */
-	public boolean insertObject(String table, String name, String namespace, String json) throws Exception {
+	public boolean insertObject(String table, String name, String namespace, long time, String json) throws Exception {
 		if(!exec(database, INSERT_OBJECT
 					.replace(KubeSQLClient.LABEL_TABLE, table)
 					.replace(KubeSQLClient.LABEL_NAME, name)
 					.replace(KubeSQLClient.LABEL_NAMESPACE, namespace)
+					.replace(KubeSQLClient.LABEL_TIME, String.valueOf(time))
 					.replace(KubeSQLClient.LABEL_JSON, json))) {
-			return updateObject(table, name, namespace, json);
+			return updateObject(table, name, namespace, time, json);
 		}
 		return true;
 	}
@@ -216,15 +219,17 @@ public abstract class KubeSQLClient {
 	 * @param table                                  table
 	 * @param name                                   name
 	 * @param namespace                              namespace
+	 * @param time                                   time
 	 * @param json                                   json
 	 * @return                                       true or false
 	 * @throws Exception                             exception
 	 */
-	public boolean updateObject(String table, String name, String namespace, String json) throws Exception {
+	public boolean updateObject(String table, String name, String namespace, long time, String json) throws Exception {
 		return exec(database, UPDATE_OBJECT
 					.replace(KubeSQLClient.LABEL_TABLE, table)
 					.replace(KubeSQLClient.LABEL_NAME, name)
 					.replace(KubeSQLClient.LABEL_NAMESPACE, namespace)
+					.replace(KubeSQLClient.LABEL_TIME, String.valueOf(time))
 					.replace(KubeSQLClient.LABEL_JSON, json));		
 	}
 	
@@ -362,9 +367,9 @@ public abstract class KubeSQLClient {
 
 	private ArrayNode getItems(int limit, int page, StringBuilder sqlBase) throws Exception {
 		
-		sqlBase.append(queryLimit(limit, page));
+		sqlBase.append(" order by time desc ").append(queryLimit(limit, page));
 		String dataSql = sqlBase.toString().replace("#TARGET#", TARGET_DATA);
-		ResultSet rsd = execWithResult(DB, dataSql);
+		ResultSet rsd = execWithResult(this.database, dataSql);
 		ArrayNode items = new ObjectMapper().createArrayNode();
 		
 		while (rsd.next()) {
@@ -375,7 +380,7 @@ public abstract class KubeSQLClient {
 	}
 
 	private int getRows(StringBuilder sqlBase) throws Exception, SQLException {
-		ResultSet rsc = execWithResult(DB, sqlBase.toString()
+		ResultSet rsc = execWithResult(this.database, sqlBase.toString()
 						.replace("#TARGET#", TARGET_COUNT));
 		rsc.next();
 		

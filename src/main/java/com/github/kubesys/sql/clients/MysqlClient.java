@@ -2,10 +2,10 @@
 
  * Copyright (2019, ) Institute of Software, Chinese Academy of Sciences
  */
-package com.github.sql.clients;
+package com.github.kubesys.sql.clients;
 
 import com.alibaba.druid.pool.DruidPooledConnection;
-import com.github.sql.KubeSQLClient;
+import com.github.kubesys.sql.KubeSQLClient;
 
 /**
  * @author wuheng@otcaix.iscas.ac.cn
@@ -25,7 +25,7 @@ public class MysqlClient extends KubeSQLClient {
 												+ "information_schema.TABLES t, information_schema.SCHEMATA n "
 												+ "WHERE t.table_name = '#TABLE#' AND n.SCHEMA_NAME = '#DATBASE#'";
 	
-	public static final String CREATE_TABLE    = "CREATE TABLE #TABLE# (name varchar(512), namespace varchar(128), "
+	public static final String CREATE_TABLE    = "CREATE TABLE #TABLE# (name varchar(512), namespace varchar(128), time bigint,"
 												+ "data json, primary key(name, namespace)) DEFAULT CHARSET=utf8";
 	
 	private static final String CONDITION = " JSON_EXTRACT(data, '$.#ITEM#') like '%#VALUE#%' AND ";
