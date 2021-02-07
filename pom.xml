@@ -6,11 +6,11 @@
 
 	<groupId>com.github.kubesys</groupId>
 	<artifactId>kubernetes-sql</artifactId>
-	<version>1.1.0</version>
+	<version>1.2.0</version>
 	<packaging>jar</packaging>
 
-	<name>kubernetes-api-mapper</name>
-	<description>kubernetes-api-mapper</description>
+	<name>kubernetes-sql</name>
+	<description>kubernetes-sql</description>
 
 	<properties>
 		<postgre.version>42.2.18</postgre.version>
@@ -139,5 +139,22 @@
 			</plugin>
 		</plugins>
 	</build>
+	
+	<profiles>
+		<profile>
+			<id>sonar</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<sonar.jdbc.url>jdbc:postgresql://39.106.40.190:30306/sonar</sonar.jdbc.url>
+				<sonar.jdbc.username>postgres</sonar.jdbc.username>
+				<sonar.jdbc.password>onceas</sonar.jdbc.password>
+				<sonar.host.url>http://39.106.40.190:31041</sonar.host.url>
+				<sonar.login>admin</sonar.login>
+				<sonar.password>admin123</sonar.password>
+			</properties>
+		</profile>
+	</profiles>
 
 </project>

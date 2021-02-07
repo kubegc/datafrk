@@ -38,8 +38,6 @@ public class MysqlClient extends KubeSQLClient {
 
 	public static final String DEF_USER = "root";
 
-	public static final String DEF_PWD  = "onceas";
-
 	public MysqlClient(DruidPooledConnection conn) throws Exception {
 		super(conn);
 	}
@@ -83,10 +81,6 @@ public class MysqlClient extends KubeSQLClient {
 		return DEF_USER;
 	}
 
-	@Override
-	public String defaultPassword() {
-		return DEF_PWD;
-	}
 
 	@Override
 	public String queryConditions() {

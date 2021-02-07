@@ -37,8 +37,6 @@ public class PostgreClient extends KubeSQLClient {
 
 	public static final String DEF_USER = "postgres";
 
-	public static final String DEF_PWD = "onceas";
-
 	public PostgreClient(DruidPooledConnection conn) throws Exception {
 		super(conn);
 	}
@@ -80,11 +78,6 @@ public class PostgreClient extends KubeSQLClient {
 	@Override
 	public String defaultUser() {
 		return DEF_USER;
-	}
-
-	@Override
-	public String defaultPassword() {
-		return DEF_PWD;
 	}
 
 	@Override

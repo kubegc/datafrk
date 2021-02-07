@@ -426,8 +426,8 @@ public abstract class KubeSQLClient {
         Properties props = new Properties();
         props.put("druid.driverClassName", defaultDriver());
         props.put("druid.url", System.getenv("jdbcUrl") == null ? defaultUrl() : System.getenv("jdbcUrl"));
-        props.put("druid.username", System.getenv("jdbcUser") == null ? defaultUser() : System.getenv("jdbcUser"));
-        props.put("druid.password", System.getenv("jdbcPassword") == null ? defaultPassword() : System.getenv("jdbcPassword"));
+        props.put("druid.username", getUser());
+        props.put("druid.password", getPwd());
         props.put("druid.initialSize", 10);
         props.put("druid.maxActive", 100);
         props.put("druid.maxWait", 0);
@@ -444,8 +444,8 @@ public abstract class KubeSQLClient {
         Properties props = new Properties();
         props.put("druid.driverClassName", defaultDriver());
         props.put("druid.url", url);
-        props.put("druid.username", System.getenv("jdbcUser") == null ? defaultUser() : System.getenv("jdbcUser"));
-        props.put("druid.password", System.getenv("jdbcPassword") == null ? defaultPassword() : System.getenv("jdbcPassword"));
+        props.put("druid.username", getUser());
+        props.put("druid.password", getPwd());
         props.put("druid.initialSize", 10);
         props.put("druid.maxActive", 100);
         props.put("druid.maxWait", 0);
@@ -453,6 +453,14 @@ public abstract class KubeSQLClient {
         dataSource.configFromPropety(props);
         return dataSource;
     }
+
+	public Object getPwd() {
+		return System.getenv("jdbcPassword") == null ? "onceas" : System.getenv("jdbcPassword");
+	}
+
+	public Object getUser() {
+		return System.getenv("jdbcUser") == null ? defaultUser() : System.getenv("jdbcUser");
+	}
 	
 	public static DruidDataSource createDataSourceFromResource(String url, String driver, String username, String password) {
         Properties props = new Properties();
@@ -481,8 +489,6 @@ public abstract class KubeSQLClient {
 	public abstract String defaultUrl();
 	
 	public abstract String defaultUser();
-	
-	public abstract String defaultPassword();
 	
 	public abstract String queryConditions();
 	
