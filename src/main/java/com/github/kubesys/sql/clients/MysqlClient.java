@@ -25,8 +25,8 @@ public class MysqlClient extends KubeSQLClient {
 												+ "information_schema.TABLES t, information_schema.SCHEMATA n "
 												+ "WHERE t.table_name = '#TABLE#' AND n.SCHEMA_NAME = '#DATBASE#'";
 	
-	public static final String CREATE_MYSQL_TABLE    = "CREATE TABLE #TABLE# (name varchar(512), namespace varchar(128), group varchar(128), time bigint,"
-												+ "data json, primary key(name, namespace, group)) DEFAULT CHARSET=utf8";
+	public static final String CREATE_MYSQL_TABLE    = "CREATE TABLE #TABLE# (name varchar(512), namespace varchar(128), apigroup varchar(128), time bigint,"
+												+ "data json, primary key(name, namespace, apigroup)) DEFAULT CHARSET=utf8";
 	
 	private static final String MYSQL_CONDITION = " JSON_EXTRACT(data, '$.#ITEM#') like '%#VALUE#%' AND ";
 	

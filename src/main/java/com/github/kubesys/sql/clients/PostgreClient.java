@@ -22,8 +22,8 @@ public class PostgreClient extends KubeSQLClient {
 
 	public static final String CHECK_POSTGRE_TABLE = "select count(*) from pg_class where relname = '#TABLE#'";
 
-	public static final String CREATE_POSTGRE_TABLE = "CREATE TABLE #TABLE# (name varchar(512), namespace varchar(128), group varchar(128), time int8,"
-																+ "data json, primary key(name, namespace, group))";
+	public static final String CREATE_POSTGRE_TABLE = "CREATE TABLE #TABLE# (name varchar(512), namespace varchar(128), apigroup varchar(128), time int8, "
+																+ "data json, primary key(name, namespace, apigroup))";
 
 	private static final String POSTGRE_CONDITION = " data#ITEM# like '%#VALUE#%' AND ";
 

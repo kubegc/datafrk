@@ -52,9 +52,9 @@ public abstract class KubeSQLClient {
 	
 	public static final String INSERT_OBJECT    = "INSERT INTO #TABLE# VALUES ('#NAME#', '#NAMESPACE#', '#GROUP#', '#TIME#' , '#JSON#'::json)";
 	
-	public static final String UPDATE_OBJECT    = "UPDATE #TABLE# SET time = '#TIME#', data = '#JSON#'::json WHERE name = '#NAME#' and namespace = '#NAMESPACE#' and group = '#GROUP#'";
+	public static final String UPDATE_OBJECT    = "UPDATE #TABLE# SET time = '#TIME#', data = '#JSON#'::json WHERE name = '#NAME#' and namespace = '#NAMESPACE#' and apigroup = '#GROUP#'";
 	
-	public static final String DELETE_OBJECT    = "DELETE FROM #TABLE# WHERE name = '#NAME#' and namespace = '#NAMESPACE#' and group = '#GROUP#'";
+	public static final String DELETE_OBJECT    = "DELETE FROM #TABLE# WHERE name = '#NAME#' and namespace = '#NAMESPACE#' and apigroup = '#GROUP#'";
 	
 	private static final String SELECT = "SELECT #TARGET# FROM #TABLE#";
 
