@@ -42,7 +42,9 @@ public abstract class KubeSQLClient {
 	
 	public static final String LABEL_GROUP      = "#GROUP#";
 	
-	public static final String LABEL_TIME       = "#TIME#";
+	public static final String LABEL_CREATED    = "#CREATED#";
+	
+	public static final String LABEL_UPDATED    = "#UPDATED#";
 	
 	public static final String LABEL_JSON       = "#JSON#";
 	
@@ -50,9 +52,9 @@ public abstract class KubeSQLClient {
 	
 	public static final String DELETE_TABLE     = "DROP TABLE #TABLE#";
 	
-	public static final String INSERT_OBJECT    = "INSERT INTO #TABLE# VALUES ('#NAME#', '#NAMESPACE#', '#GROUP#', '#TIME#' , '#JSON#'::json)";
+	public static final String INSERT_OBJECT    = "INSERT INTO #TABLE# VALUES ('#NAME#', '#NAMESPACE#', '#GROUP#', '#CREATED#', '#UPDATED#' , '#JSON#'::json)";
 	
-	public static final String UPDATE_OBJECT    = "UPDATE #TABLE# SET time = '#TIME#', data = '#JSON#'::json WHERE name = '#NAME#' and namespace = '#NAMESPACE#' and apigroup = '#GROUP#'";
+	public static final String UPDATE_OBJECT    = "UPDATE #TABLE# SET updated = '#UPDATED#', data = '#JSON#'::json WHERE name = '#NAME#' and namespace = '#NAMESPACE#' and apigroup = '#GROUP#'";
 	
 	public static final String DELETE_OBJECT    = "DELETE FROM #TABLE# WHERE name = '#NAME#' and namespace = '#NAMESPACE#' and apigroup = '#GROUP#'";
 	
@@ -201,20 +203,22 @@ public abstract class KubeSQLClient {
 	 * @param name                                   name
 	 * @param namespace                              namespace
 	 * @param group                                  group
-	 * @param time                                   time
+	 * @param created                                created
+	 * @param updated                                updated
 	 * @param json                                   json
 	 * @return                                       true or false
 	 * @throws Exception                             exception
 	 */
-	public boolean insertObject(String table, String name, String namespace, String group, long time, String json) throws Exception {
+	public boolean insertObject(String table, String name, String namespace, String group, String created, String updated, String json) throws Exception {
 		if(!exec(database, INSERT_OBJECT
 					.replace(KubeSQLClient.LABEL_TABLE, table)
 					.replace(KubeSQLClient.LABEL_NAME, name)
 					.replace(KubeSQLClient.LABEL_NAMESPACE, namespace)
 					.replace(KubeSQLClient.LABEL_GROUP, group)
-					.replace(KubeSQLClient.LABEL_TIME, String.valueOf(time))
+					.replace(KubeSQLClient.LABEL_CREATED, created)
+					.replace(KubeSQLClient.LABEL_UPDATED, updated)
 					.replace(KubeSQLClient.LABEL_JSON, json))) {
-			return updateObject(table, name, namespace, group, time, json);
+			return updateObject(table, name, namespace, group, updated, json);
 		}
 		return true;
 	}
@@ -224,18 +228,18 @@ public abstract class KubeSQLClient {
 	 * @param name                                   name
 	 * @param namespace                              namespace
 	 * @param group                                  group
-	 * @param time                                   time
+	 * @param updated                                updated
 	 * @param json                                   json
 	 * @return                                       true or false
 	 * @throws Exception                             exception
 	 */
-	public boolean updateObject(String table, String name, String namespace, String group, long time, String json) throws Exception {
+	public boolean updateObject(String table, String name, String namespace, String group, String updated, String json) throws Exception {
 		return exec(database, UPDATE_OBJECT
 					.replace(KubeSQLClient.LABEL_TABLE, table)
 					.replace(KubeSQLClient.LABEL_NAME, name)
 					.replace(KubeSQLClient.LABEL_NAMESPACE, namespace)
 					.replace(KubeSQLClient.LABEL_GROUP, group)
-					.replace(KubeSQLClient.LABEL_TIME, String.valueOf(time))
+					.replace(KubeSQLClient.LABEL_UPDATED, updated)
 					.replace(KubeSQLClient.LABEL_JSON, json));		
 	}
 	
