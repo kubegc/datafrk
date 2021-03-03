@@ -27,14 +27,14 @@ public class KubeSQLClientTest {
 						"jdbc:postgresql://127.0.0.1:5432/postgres", 
 						"org.postgresql.Driver", 
 						"postgres", "onceas").getConnection(), "test");
-//		client.createDatabase();
-//		client.createTable("test");
-//		client.insertObject("test", "test1", "default", System.currentTimeMillis(), json);
-//		Thread.sleep(1000);
-//		client.insertObject("test", "test2", "default", System.currentTimeMillis(), json);
+		client.createDatabase();
+		client.createTable("test");
+		client.insertObject("test", "test1", "default", "henry", System.currentTimeMillis(), json);
+		Thread.sleep(1000);
+		client.insertObject("test", "test2", "default", "henry", System.currentTimeMillis(), json);
 		System.out.println(client.query("test", "Test", 10, 1, null).toPrettyString());
 		Thread.sleep(1000);
-		client.updateObject("test", "test1", "default", System.currentTimeMillis(), json);
+		client.updateObject("test", "test1", "default", "henry", System.currentTimeMillis(), json);
 		System.out.println(client.query("test", "Test", 10, 1, null).toPrettyString());
 	}
 }
