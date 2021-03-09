@@ -20,7 +20,7 @@ public class PostgreClient extends KubeSQLClient {
 
 	public static final String CREATE_POSTGRE_DATABASE = "CREATE DATABASE #DATBASE# ENCODING = 'UTF8'";
 
-	public static final String CHECK_POSTGRE_TABLE = "select count(*) from pg_class where relname = '#TABLE#'";
+	public static final String CHECK_POSTGRE_TABLE = "select count(*) as num from pg_class where relname = '#TABLE#'";
 
 	public static final String CREATE_POSTGRE_TABLE = "CREATE TABLE #TABLE# (name varchar(512), namespace varchar(128), apigroup varchar(128), created timestamp, updated timestamp, "
 																+ "data json, primary key(name, namespace, apigroup))";

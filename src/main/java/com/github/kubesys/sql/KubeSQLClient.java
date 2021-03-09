@@ -289,8 +289,7 @@ public abstract class KubeSQLClient {
 			pstmt = conn.prepareStatement(sql);
 			return pstmt.execute();
 		} catch (Exception ex) {
-			m_logger.severe("caused by " + sql + ":" + ex);
-			return false;
+			throw new Exception(ex);
 		} finally {
 			if (pstmt != null) {
 				pstmt.close();
@@ -379,7 +378,7 @@ public abstract class KubeSQLClient {
 
 	private ArrayNode getItems(int limit, int page, StringBuilder sqlBase) throws Exception {
 		
-		sqlBase.append(" order by time desc ").append(queryLimit(limit, page));
+		sqlBase.append(" order by updated desc ").append(queryLimit(limit, page));
 		String dataSql = sqlBase.toString().replace("#TARGET#", TARGET_DATA);
 		ResultSet rsd = execWithResult(this.database, dataSql);
 		ArrayNode items = new ObjectMapper().createArrayNode();
