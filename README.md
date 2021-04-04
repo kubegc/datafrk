@@ -9,7 +9,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.github.kubesys</groupId>
   <artifactId>kubernetes-sql</artifactId>
-  <version>3.2.0</version> 
+  <version>3.5.0</version> 
 </dependency>
 
 <repositories>
