@@ -6,7 +6,7 @@
 
 	<groupId>com.github.kubesys</groupId>
 	<artifactId>kubernetes-sql</artifactId>
-	<version>3.4.0</version>
+	<version>3.5.0</version>
 	<packaging>jar</packaging>
 
 	<name>kubernetes-sql</name>
@@ -16,7 +16,7 @@
 		<postgre.version>42.2.19</postgre.version>
 		<druid.version>1.2.5</druid.version>
 		<mysql.version>8.0.23</mysql.version>
-		<jackson.version>2.12.1</jackson.version>
+		<jackson.version>2.12.2</jackson.version>
 	</properties>
 
 	<dependencies>
