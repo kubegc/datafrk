@@ -261,6 +261,48 @@ public abstract class KubeSQLClient {
 					.replace(KubeSQLClient.LABEL_JSON, json));		
 	}
 	
+	/****************************************************************************
+	 * 
+	 * 
+	 *                         Operator
+	 * 
+	 * 
+	 *****************************************************************************/
+	
+	public float sum(String table, String field) throws Exception {
+		StringBuilder sb = new StringBuilder();
+		sb.append("SELECT data").append(KubeSQLUtil.toSqlSnippet(field)).append(" as num FROM " + table);
+		ResultSet rs = execWithResult(table, sb.toString());
+		float sum = 0;
+		while (rs.next()) {
+			try {
+				sum += rs.getInt("num");
+			} catch (Exception ex) {
+				sum += KubeSQLUtil.toNum(rs.getString("num"));
+			}
+		}
+		return sum;
+	}
+	
+	
+	public int tableNum() throws Exception {
+		ResultSet rs = execWithResult("kube", "SELECT count(*) as num FROM information_schema.tables WHERE table_schema = 'public'");
+		rs.next();
+		return rs.getInt("num");
+	}
+	
+	public int num(String table, String field, String expected) throws Exception {
+		StringBuilder sb = new StringBuilder();
+		sb.append("SELECT COUNT(*) as num FROM " + table);
+		if (expected == null || expected.length() != 0) {
+			sb.append(" WHERE data")
+					.append(KubeSQLUtil.toSqlSnippet(field))
+					.append(" like '%").append(expected).append("%'");
+		}
+		ResultSet rs = execWithResult(table, sb.toString());
+		rs.next();
+		return rs.getInt("num");
+	}
 	
 	/****************************************************************************
 	 * 
