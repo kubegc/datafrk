@@ -4,20 +4,28 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.github.kubesys</groupId>
+	<groupId>io.github.kubesys</groupId>
 	<artifactId>kubernetes-sql</artifactId>
-	<version>4.1.0</version>
+	<version>5.0.0</version>
 	<packaging>jar</packaging>
 
 	<name>kubernetes-sql</name>
 	<description>kubernetes-sql</description>
 
 	<properties>
-		<postgre.version>42.2.19</postgre.version>
-		<druid.version>1.2.5</druid.version>
-		<mysql.version>8.0.23</mysql.version>
-		<jackson.version>2.12.2</jackson.version>
+		<postgre.version>42.2.22</postgre.version>
+		<druid.version>1.2.6</druid.version>
+		<mysql.version>8.0.25</mysql.version>
+		<jackson.version>2.12.3</jackson.version>
 	</properties>
+
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
 
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
@@ -40,7 +48,7 @@
 			<artifactId>druid</artifactId>
 			<version>${druid.version}</version>
 		</dependency>
-		
+
 		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
@@ -107,7 +115,7 @@
 					</execution>
 				</executions>
 			</plugin>
-			
+
 			<!--source -->
 			<plugin>
 				<artifactId>maven-source-plugin</artifactId>
@@ -139,7 +147,7 @@
 			</plugin>
 		</plugins>
 	</build>
-	
+
 	<profiles>
 		<profile>
 			<id>sonar</id>
@@ -156,5 +164,16 @@
 			</properties>
 		</profile>
 	</profiles>
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+	</distributionManagement>
 
 </project>
