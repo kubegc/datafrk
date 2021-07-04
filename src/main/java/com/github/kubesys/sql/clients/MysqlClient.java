@@ -20,23 +20,27 @@ public class MysqlClient extends KubeSQLClient {
 	
 	public static final String CREATE_MYSQL_DATABASE = "CREATE DATABASE #DATBASE# CHARACTER SET utf8 COLLATE utf8_general_ci";
 	
-	
 	public static final String CHECK_MYSQL_TABLE     = "SELECT DISTINCT t.table_name, n.SCHEMA_NAME FROM "
 												+ "information_schema.TABLES t, information_schema.SCHEMATA n "
 												+ "WHERE t.table_name = '#TABLE#' AND n.SCHEMA_NAME = '#DATBASE#'";
 	
-	public static final String CREATE_MYSQL_TABLE    = "CREATE TABLE #TABLE# (name varchar(512), namespace varchar(128), apigroup varchar(128), created datetime, updated datetime "
+	public static final String CREATE_MYSQL_TABLE    = "CREATE TABLE #TABLE# (name varchar(512), namespace varchar(128), apigroup varchar(128), created datetime, updated datetime, "
 												+ "data json, primary key(name, namespace, apigroup)) DEFAULT CHARSET=utf8";
 	
-	private static final String MYSQL_CONDITION = " JSON_EXTRACT(data, '$.#ITEM#') like '%#VALUE#%' AND ";
 	
-	private static final String MYSQL_LIMIT = " LIMIT #FROM#, #TO#";
+	public static final String INSERT_MYSQL_OBJECT   = "INSERT INTO #TABLE# VALUES ('#NAME#', '#NAMESPACE#', '#GROUP#', '#CREATED#', '#UPDATED#' , '#JSON#')";
 	
-	public static final String DEF_MYSQL_DRV  = "com.mysql.cj.jdbc.Driver";
+	public static final String UPDATE_MYSQL_OBJECT   = "UPDATE #TABLE# SET updated = '#UPDATED#', data = '#JSON#' WHERE name = '#NAME#' and namespace = '#NAMESPACE#' and apigroup = '#GROUP#'";
+	
+	private static final String MYSQL_CONDITION      = " JSON_EXTRACT(data, '$.#ITEM#') like '%#VALUE#%' AND ";
+	
+	private static final String MYSQL_LIMIT          = " LIMIT #FROM#, #TO#";
+	
+	public static final String DEF_MYSQL_DRV         = "com.mysql.cj.jdbc.Driver";
 
-	public static final String DEF_MYSQL_URL  = "jdbc:mysql://kube-database.kube-system:3306?useUnicode=true&characterEncoding=UTF8&connectTimeout=2000&socketTimeout=6000&autoReconnect=true&&serverTimezone=Asia/Shanghai";
+	public static final String DEF_MYSQL_URL         = "jdbc:mysql://kube-database.kube-system:3306?useUnicode=true&characterEncoding=UTF8&connectTimeout=2000&socketTimeout=6000&autoReconnect=true&&serverTimezone=Asia/Shanghai";
 
-	public static final String DEF_MYSQL_USER = "root";
+	public static final String DEF_MYSQL_USER        = "root";
 
 	public MysqlClient(DruidPooledConnection conn) throws Exception {
 		super(conn);
@@ -97,6 +101,16 @@ public class MysqlClient extends KubeSQLClient {
 		int l = (limit <= 0) ? 10 : limit;
 		int p = (page <= 1) ? 1 : page;
 		return MYSQL_LIMIT.replace("#FROM#", String.valueOf((p - 1) * l)).replace("#TO#", String.valueOf(l));
+	}
+
+	@Override
+	public String insertObjectSql() {
+		return INSERT_MYSQL_OBJECT;
+	}
+
+	@Override
+	public String updateObjectSql() {
+		return UPDATE_MYSQL_OBJECT;
 	}
 
 

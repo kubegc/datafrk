@@ -29,7 +29,7 @@ public abstract class KubeSQLClient {
 	
 	public static final Logger m_logger = Logger.getLogger(KubeSQLClient.class.getName());
 
-	public static final String DEFAULT_DB       = System.getenv("jdbcDB") == null 
+	public static final String DEFAULT_DB_NAME  = System.getenv("jdbcDB") == null 
 													? "kube" : System.getenv("jdbcDB");
 	
 	public static final String LABEL_DATABASE   = "#DATBASE#";
@@ -52,9 +52,6 @@ public abstract class KubeSQLClient {
 	
 	public static final String DELETE_TABLE     = "DROP TABLE #TABLE#";
 	
-	public static final String INSERT_OBJECT    = "INSERT INTO #TABLE# VALUES ('#NAME#', '#NAMESPACE#', '#GROUP#', '#CREATED#', '#UPDATED#' , '#JSON#'::json)";
-	
-	public static final String UPDATE_OBJECT    = "UPDATE #TABLE# SET updated = '#UPDATED#', data = '#JSON#'::json WHERE name = '#NAME#' and namespace = '#NAMESPACE#' and apigroup = '#GROUP#'";
 	
 	public static final String DELETE_OBJECT    = "DELETE FROM #TABLE# WHERE name = '#NAME#' and namespace = '#NAMESPACE#' and apigroup = '#GROUP#'";
 	
@@ -88,7 +85,7 @@ public abstract class KubeSQLClient {
 	protected final String database;
 
 	public KubeSQLClient(DruidPooledConnection conn) throws Exception {
-		this(conn, DEFAULT_DB);
+		this(conn, DEFAULT_DB_NAME);
 	}
 	
 	public KubeSQLClient(DruidPooledConnection conn, String database) throws Exception {
@@ -210,7 +207,7 @@ public abstract class KubeSQLClient {
 	 * @throws Exception                             exception
 	 */
 	public boolean insertObject(String table, String name, String namespace, String group, String created, String updated, String json) throws Exception {
-		if(!exec(database, INSERT_OBJECT
+		if(!exec(database, insertObjectSql()
 					.replace(KubeSQLClient.LABEL_TABLE, table)
 					.replace(KubeSQLClient.LABEL_NAME, name)
 					.replace(KubeSQLClient.LABEL_NAMESPACE, namespace)
@@ -234,7 +231,7 @@ public abstract class KubeSQLClient {
 	 * @throws Exception                             exception
 	 */
 	public boolean updateObject(String table, String name, String namespace, String group, String updated, String json) throws Exception {
-		return exec(database, UPDATE_OBJECT
+		return exec(database, updateObjectSql()
 					.replace(KubeSQLClient.LABEL_TABLE, table)
 					.replace(KubeSQLClient.LABEL_NAME, name)
 					.replace(KubeSQLClient.LABEL_NAMESPACE, namespace)
@@ -319,13 +316,12 @@ public abstract class KubeSQLClient {
 	 * @throws Exception                      exception
 	 */
 	public boolean exec(String dbName, String sql) throws Exception {
-		
+
 		if (dbName != null) {
 			conn.setCatalog(dbName);
 		}
 		
 		PreparedStatement pstmt = null;
-				
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -532,6 +528,10 @@ public abstract class KubeSQLClient {
 	public abstract String checkDatabaseSql();
 	
 	public abstract String createDatabaseSql();
+	
+	public abstract String insertObjectSql();
+	
+	public abstract String updateObjectSql();
 	
 	public abstract String checkTableSql();
 	
