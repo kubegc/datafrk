@@ -12,6 +12,13 @@ Add this dependency to your project's POM:
   <version>5.0.0</version> 
 </dependency>
 
+<repositories>
+   <repository>
+       <id>pdos-repos</id>
+       <name>PDOS Releases</name>
+       <url>http://39.106.40.190:31021/repository/maven-public/</url>
+    </repository>
+</repositories>
 
 ## docs
 
