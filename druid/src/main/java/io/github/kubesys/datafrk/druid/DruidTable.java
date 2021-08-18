@@ -19,9 +19,12 @@ public class DruidTable<ResultSet> implements Table<ResultSet> {
 
 	protected final DruidExecutor executor;
 	
-	public DruidTable(DruidExecutor executor) {
+	protected final String name;
+	
+	public DruidTable(DruidExecutor executor, String name) {
 		super();
 		this.executor = executor;
+		this.name = name;
 	}
 
 	@Override

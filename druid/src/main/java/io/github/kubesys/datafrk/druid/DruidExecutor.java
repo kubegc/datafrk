@@ -7,6 +7,8 @@ package io.github.kubesys.datafrk.druid;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 import com.alibaba.druid.pool.DruidPooledConnection;
@@ -66,5 +68,49 @@ public class DruidExecutor {
 				}
 			}
 		}
+	}
+	
+	public List<String> execWithValue(String sql, int id) {
+		List<String> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		try {
+			ResultSet rs = conn.prepareStatement(sql).executeQuery();
+			while (rs.next()) {
+				list.add(rs.getString(id));
+			}
+		} catch (SQLException ex) {
+			m_logger.severe(ex.toString());
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return list;
+	}
+	
+	public List<String> execWithValue(String sql, String label) {
+		List<String> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		try {
+			ResultSet rs = conn.prepareStatement(sql).executeQuery();
+			while (rs.next()) {
+				list.add(rs.getString(label));
+			}
+		} catch (SQLException ex) {
+			m_logger.severe(ex.toString());
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return list;
 	}
 }

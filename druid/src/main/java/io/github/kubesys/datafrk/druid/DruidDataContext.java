@@ -46,22 +46,21 @@ public class DruidDataContext implements DataContext {
 
 	@Override
 	public Database currentDatabase() {
-		return null;
+		return new DruidDatabase(executor);
 	}
 
 	@Override
 	public boolean createDatabase(CreateDatabase createDatabase) {
-		// TODO Auto-generated method stub
-		return false;
+		return this.executor.execWithStatus(createDatabase.toSQL());
 	}
 
 	@Override
-	public boolean checkDababase(CheckDatabase dropDatabase) {
-		return false;
+	public boolean checkDababase(CheckDatabase checkDatabase) {
+		return this.executor.execWithStatus(checkDatabase.toSQL());
 	}
 
 	@Override
 	public boolean dropDababase(DropDatabase dropDatabase) {
-		return false;
+		return this.executor.execWithStatus(dropDatabase.toSQL());
 	}
 }
