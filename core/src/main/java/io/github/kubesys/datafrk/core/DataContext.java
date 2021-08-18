@@ -11,9 +11,10 @@ package io.github.kubesys.datafrk.core;
  */
 public interface DataContext {
 	
-	public Query query();
+	public Database thisDatabase();
+
+	public boolean createDatabase();
 	
-	public Schema schema();
+	public boolean dropDababase();
 	
-	public Table table();
 }

@@ -9,6 +9,7 @@ package io.github.kubesys.datafrk.core;
  * @since 2.0.0
  *
  */
-public interface DataSet {
+public interface SQL {
 	
+	public String toSQL();
 }
