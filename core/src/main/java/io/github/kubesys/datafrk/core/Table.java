@@ -6,7 +6,7 @@ package io.github.kubesys.datafrk.core;
 
 import io.github.kubesys.datafrk.core.crud.DeleteItem;
 import io.github.kubesys.datafrk.core.crud.InsertItem;
-import io.github.kubesys.datafrk.core.crud.QueryItems;
+import io.github.kubesys.datafrk.core.crud.QueryItem;
 import io.github.kubesys.datafrk.core.crud.UpdateItem;
 
 /**
@@ -16,7 +16,7 @@ import io.github.kubesys.datafrk.core.crud.UpdateItem;
  */
 public interface Table<T> extends Schema {
 	
-	public T query(QueryItems query);
+	public T query(QueryItem query);
 	
 	public boolean insert(InsertItem insert);
 	

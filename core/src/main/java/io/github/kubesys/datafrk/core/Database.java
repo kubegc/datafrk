@@ -4,11 +4,12 @@
  */
 package io.github.kubesys.datafrk.core;
 
-import java.util.List;
+import java.util.Collection;
 
 import io.github.kubesys.datafrk.core.crud.CheckTable;
 import io.github.kubesys.datafrk.core.crud.CreateTable;
 import io.github.kubesys.datafrk.core.crud.DropTable;
+import io.github.kubesys.datafrk.core.crud.QueryTable;
 
 /**
  * @author wuheng@iscas.ac.cn
@@ -23,7 +24,7 @@ public interface Database extends Schema {
 	
 	public boolean dropTable(DropTable dropTable);
 	
-	public List<Table<?>> tables();
+	public Collection<Table<?>> tables(QueryTable queryTable, String label);
 	
 	public Table<?> get(String name);
 }

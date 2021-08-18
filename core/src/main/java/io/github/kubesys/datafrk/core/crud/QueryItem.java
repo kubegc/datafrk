@@ -11,6 +11,6 @@ import io.github.kubesys.datafrk.core.SQL;
  * @since 2.0.0
  *
  */
-public interface QueryItems extends SQL {
+public interface QueryItem extends SQL {
 	
 }
