@@ -4,6 +4,10 @@
  */
 package io.github.kubesys.datafrk.core;
 
+import io.github.kubesys.datafrk.core.crud.CheckDatabase;
+import io.github.kubesys.datafrk.core.crud.CreateDatabase;
+import io.github.kubesys.datafrk.core.crud.DropDatabase;
+
 /**
  * @author wuheng@iscas.ac.cn
  * @since 2.0.0
@@ -11,10 +15,12 @@ package io.github.kubesys.datafrk.core;
  */
 public interface DataContext {
 	
-	public Database thisDatabase();
+	public Database currentDatabase();
 
-	public boolean createDatabase();
+	public boolean createDatabase(CreateDatabase createDatabase);
 	
-	public boolean dropDababase();
+	public boolean checkDababase(CheckDatabase dropDatabase);
+	
+	public boolean dropDababase(DropDatabase dropDatabase);
 	
 }

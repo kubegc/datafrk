@@ -11,6 +11,6 @@ import io.github.kubesys.datafrk.core.SQL;
  * @since 2.0.0
  *
  */
-public interface Update extends SQL {
+public interface CheckTable extends SQL {
 	
 }

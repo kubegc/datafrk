@@ -4,10 +4,10 @@
  */
 package io.github.kubesys.datafrk.core;
 
-import io.github.kubesys.datafrk.core.crud.Delete;
-import io.github.kubesys.datafrk.core.crud.Insert;
-import io.github.kubesys.datafrk.core.crud.Query;
-import io.github.kubesys.datafrk.core.crud.Update;
+import io.github.kubesys.datafrk.core.crud.DeleteItem;
+import io.github.kubesys.datafrk.core.crud.InsertItem;
+import io.github.kubesys.datafrk.core.crud.QueryItems;
+import io.github.kubesys.datafrk.core.crud.UpdateItem;
 
 /**
  * @author wuheng@iscas.ac.cn
@@ -16,11 +16,11 @@ import io.github.kubesys.datafrk.core.crud.Update;
  */
 public interface Table<T> extends Schema {
 	
-	public T query(Query query);
+	public T query(QueryItems query);
 	
-	public boolean insert(Insert insert);
+	public boolean insert(InsertItem insert);
 	
-	public boolean update(Update update);
+	public boolean update(UpdateItem update);
 	
-	public boolean delete(Delete delete);
+	public boolean delete(DeleteItem delete);
 }

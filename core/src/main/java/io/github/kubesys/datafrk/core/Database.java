@@ -6,6 +6,10 @@ package io.github.kubesys.datafrk.core;
 
 import java.util.List;
 
+import io.github.kubesys.datafrk.core.crud.CheckTable;
+import io.github.kubesys.datafrk.core.crud.CreateTable;
+import io.github.kubesys.datafrk.core.crud.DropTable;
+
 /**
  * @author wuheng@iscas.ac.cn
  * @since 2.0.0
@@ -13,11 +17,11 @@ import java.util.List;
  */
 public interface Database extends Schema {
 	
-	public boolean createTable(String sql);
+	public boolean createTable(CreateTable createTable);
 	
-	public boolean updateTable(String sql);
+	public boolean checkTable(CheckTable checkTable);
 	
-	public boolean deleteTable(String name);
+	public boolean dropTable(DropTable dropTable);
 	
 	public List<Table<?>> tables();
 	

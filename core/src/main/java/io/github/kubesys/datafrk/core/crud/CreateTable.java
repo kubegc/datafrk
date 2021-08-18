@@ -11,6 +11,6 @@ import io.github.kubesys.datafrk.core.SQL;
  * @since 2.0.0
  *
  */
-public interface Query extends SQL {
+public interface CreateTable extends SQL {
 	
 }
