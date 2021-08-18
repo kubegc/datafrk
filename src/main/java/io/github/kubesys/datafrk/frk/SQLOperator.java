@@ -1,7 +1,7 @@
 /**
  * Copyright (2020, ) Institute of Software, Chinese Academy of Sciences
  */
-package com.github.kubesys.sql.frk;
+package io.github.kubesys.datafrk.frk;
 
 
 import java.sql.Connection;

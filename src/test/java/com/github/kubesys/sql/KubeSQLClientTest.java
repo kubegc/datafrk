@@ -4,7 +4,8 @@
  */
 package com.github.kubesys.sql;
 
-import com.github.kubesys.sql.clients.PostgreClient;
+import io.github.kubesys.datafrk.KubeSQLClient;
+import io.github.kubesys.datafrk.clients.PostgreClient;
 
 /**
  * @author wuheng@otcaix.iscas.ac.cn

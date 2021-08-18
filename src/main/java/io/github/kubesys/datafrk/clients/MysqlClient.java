@@ -2,10 +2,11 @@
 
  * Copyright (2019, ) Institute of Software, Chinese Academy of Sciences
  */
-package com.github.kubesys.sql.clients;
+package io.github.kubesys.datafrk.clients;
 
 import com.alibaba.druid.pool.DruidPooledConnection;
-import com.github.kubesys.sql.KubeSQLClient;
+
+import io.github.kubesys.datafrk.KubeSQLClient;
 
 /**
  * @author wuheng@otcaix.iscas.ac.cn

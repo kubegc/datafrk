@@ -2,7 +2,7 @@
 
  * Copyright (2019, ) Institute of Software, Chinese Academy of Sciences
  */
-package com.github.kubesys.sql;
+package io.github.kubesys.datafrk;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
