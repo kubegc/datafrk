@@ -5,6 +5,7 @@
 package io.github.kubesys.datafrk.druid;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Logger;
 
@@ -49,14 +50,13 @@ public class DruidExecutor {
 		}
 	}
 	
-	public boolean execWithresult(String sql) {
+	public ResultSet execWithResult(String sql) {
 		PreparedStatement pstmt = null;
 		try {
-			pstmt = conn.prepareStatement(sql);
-			return pstmt.execute();
+			return conn.prepareStatement(sql).executeQuery();
 		} catch (SQLException ex) {
 			m_logger.severe(ex.toString());
-			return false;
+			return null;
 		} finally {
 			if (pstmt != null) {
 				try {
