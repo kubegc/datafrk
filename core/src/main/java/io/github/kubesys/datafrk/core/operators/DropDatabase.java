@@ -11,6 +11,12 @@ import io.github.kubesys.datafrk.core.SQL;
  * @since 2.0.0
  *
  */
-public interface DropDatabase extends SQL {
+public abstract class DropDatabase implements SQL {
 	
+	protected final String name;
+
+	public DropDatabase(String name) {
+		super();
+		this.name = name;
+	}
 }

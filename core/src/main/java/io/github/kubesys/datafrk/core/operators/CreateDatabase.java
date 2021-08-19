@@ -11,6 +11,13 @@ import io.github.kubesys.datafrk.core.SQL;
  * @since 2.0.0
  *
  */
-public interface CreateDatabase extends SQL {
+public abstract class CreateDatabase implements SQL {
+	
+	protected final String name;
+
+	public CreateDatabase(String name) {
+		super();
+		this.name = name;
+	}
 	
 }

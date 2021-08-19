@@ -11,6 +11,12 @@ import io.github.kubesys.datafrk.core.SQL;
  * @since 2.0.0
  *
  */
-public interface CheckDatabase extends SQL {
+public abstract class CheckDatabase implements SQL {
 	
+	protected final String name;
+
+	public CheckDatabase(String name) {
+		super();
+		this.name = name;
+	}
 }
