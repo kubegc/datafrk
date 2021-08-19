@@ -20,7 +20,7 @@ public class CreatePostgreDatabase extends CreateDatabase {
 
 	@Override
 	public String toSQL() {
-		return "create database " + name;
+		return "CREATE database " + name;
 	}
 
 }

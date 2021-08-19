@@ -20,7 +20,7 @@ public class DropPostgreDatabase extends DropDatabase {
 
 	@Override
 	public String toSQL() {
-		return "drop database " + name;
+		return "DROP database " + name;
 	}
 
 }

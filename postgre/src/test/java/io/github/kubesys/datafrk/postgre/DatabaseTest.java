@@ -15,7 +15,11 @@ public class DatabaseTest {
 
 	public static void main(String[] args) throws Exception {
 		DataContext context = DataContextBuilder.createDataContext();
+		System.out.println(context.checkDababase(new CheckPostgreDatabase("abc")));
+		Thread.sleep(10000);
 		System.out.println(context.createDatabase(new CreatePostgreDatabase("abc")));
+		Thread.sleep(10000);
+		System.out.println(context.checkDababase(new CheckPostgreDatabase("abc")));
 		Thread.sleep(10000);
 		System.out.println(context.dropDababase(new DropPostgreDatabase("abc")));
 	}
