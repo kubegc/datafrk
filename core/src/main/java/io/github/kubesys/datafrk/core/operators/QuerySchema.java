@@ -2,7 +2,7 @@
 
  * Copyright (2021, ) Institute of Software, Chinese Academy of Sciences
  */
-package io.github.kubesys.datafrk.core.crud;
+package io.github.kubesys.datafrk.core.operators;
 
 import io.github.kubesys.datafrk.core.SQL;
 
@@ -11,6 +11,6 @@ import io.github.kubesys.datafrk.core.SQL;
  * @since 2.0.0
  *
  */
-public interface DropDatabase extends SQL {
+public interface QuerySchema extends SQL {
 	
 }

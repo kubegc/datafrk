@@ -4,10 +4,10 @@
  */
 package io.github.kubesys.datafrk.core;
 
-import io.github.kubesys.datafrk.core.crud.DeleteItem;
-import io.github.kubesys.datafrk.core.crud.InsertItem;
-import io.github.kubesys.datafrk.core.crud.QueryItem;
-import io.github.kubesys.datafrk.core.crud.UpdateItem;
+import io.github.kubesys.datafrk.core.operators.DeleteItem;
+import io.github.kubesys.datafrk.core.operators.InsertItem;
+import io.github.kubesys.datafrk.core.operators.QueryItem;
+import io.github.kubesys.datafrk.core.operators.UpdateItem;
 
 /**
  * @author wuheng@iscas.ac.cn

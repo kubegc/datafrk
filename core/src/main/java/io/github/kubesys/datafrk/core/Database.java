@@ -6,10 +6,10 @@ package io.github.kubesys.datafrk.core;
 
 import java.util.Collection;
 
-import io.github.kubesys.datafrk.core.crud.CheckTable;
-import io.github.kubesys.datafrk.core.crud.CreateTable;
-import io.github.kubesys.datafrk.core.crud.DropTable;
-import io.github.kubesys.datafrk.core.crud.QueryTable;
+import io.github.kubesys.datafrk.core.operators.CheckTable;
+import io.github.kubesys.datafrk.core.operators.CreateTable;
+import io.github.kubesys.datafrk.core.operators.DropTable;
+import io.github.kubesys.datafrk.core.operators.QueryTable;
 
 /**
  * @author wuheng@iscas.ac.cn
