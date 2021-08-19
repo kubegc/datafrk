@@ -37,7 +37,8 @@ public class DruidExecutor {
 		PreparedStatement pstmt = null;
 		try {
 			pstmt = conn.prepareStatement(sql);
-			return pstmt.execute();
+			pstmt.execute();
+			return true;
 		} catch (SQLException ex) {
 			m_logger.severe(ex.toString());
 			return false;
