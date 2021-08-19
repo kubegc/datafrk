@@ -10,9 +10,9 @@ import com.alibaba.druid.pool.DruidDataSource;
 
 import io.github.kubesys.datafrk.core.DataContext;
 import io.github.kubesys.datafrk.core.Database;
-import io.github.kubesys.datafrk.core.crud.CheckDatabase;
-import io.github.kubesys.datafrk.core.crud.CreateDatabase;
-import io.github.kubesys.datafrk.core.crud.DropDatabase;
+import io.github.kubesys.datafrk.core.operators.CheckDatabase;
+import io.github.kubesys.datafrk.core.operators.CreateDatabase;
+import io.github.kubesys.datafrk.core.operators.DropDatabase;
 
 /**
  * @author wuheng@iscas.ac.cn
