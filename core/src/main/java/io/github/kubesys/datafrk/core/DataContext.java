@@ -19,7 +19,7 @@ public interface DataContext {
 
 	public boolean createDatabase(CreateDatabase createDatabase);
 	
-	public boolean checkDababase(CheckDatabase dropDatabase);
+	public boolean checkDababase(CheckDatabase checkDatabase);
 	
 	public boolean dropDababase(DropDatabase dropDatabase);
 	
