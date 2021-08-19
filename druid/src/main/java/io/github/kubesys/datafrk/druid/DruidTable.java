@@ -4,10 +4,12 @@
  */
 package io.github.kubesys.datafrk.druid;
 
+import java.sql.ResultSet;
+
 import io.github.kubesys.datafrk.core.Table;
 import io.github.kubesys.datafrk.core.crud.DeleteItem;
 import io.github.kubesys.datafrk.core.crud.InsertItem;
-import io.github.kubesys.datafrk.core.crud.QueryItems;
+import io.github.kubesys.datafrk.core.crud.QueryItem;
 import io.github.kubesys.datafrk.core.crud.UpdateItem;
 
 /**
@@ -15,7 +17,7 @@ import io.github.kubesys.datafrk.core.crud.UpdateItem;
  * @since 2.0.0
  *
  */
-public class DruidTable<ResultSet> implements Table<ResultSet> {
+public class DruidTable implements Table<ResultSet> {
 
 	protected final DruidExecutor executor;
 	
@@ -28,28 +30,29 @@ public class DruidTable<ResultSet> implements Table<ResultSet> {
 	}
 
 	@Override
+	// TODO
 	public String getSchema() {
 		return null;
 	}
 
 	@Override
-	public ResultSet query(QueryItems query) {
-		return null;
+	public ResultSet query(QueryItem query) {
+		return this.executor.execWithResult(query.toSQL());
 	}
 
 	@Override
 	public boolean insert(InsertItem insert) {
-		return false;
+		return this.executor.execWithStatus(insert.toSQL());
 	}
 
 	@Override
 	public boolean update(UpdateItem update) {
-		return false;
+		return this.executor.execWithStatus(update.toSQL());
 	}
 
 	@Override
 	public boolean delete(DeleteItem delete) {
-		return false;
+		return this.executor.execWithStatus(delete.toSQL());
 	}
 	
 }

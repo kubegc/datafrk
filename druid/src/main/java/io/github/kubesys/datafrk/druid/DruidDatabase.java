@@ -4,9 +4,10 @@
  */
 package io.github.kubesys.datafrk.druid;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Logger;
 
 import io.github.kubesys.datafrk.core.Database;
@@ -14,6 +15,7 @@ import io.github.kubesys.datafrk.core.Table;
 import io.github.kubesys.datafrk.core.crud.CheckTable;
 import io.github.kubesys.datafrk.core.crud.CreateTable;
 import io.github.kubesys.datafrk.core.crud.DropTable;
+import io.github.kubesys.datafrk.core.crud.QueryTable;
 
 /**
  * @author wuheng@iscas.ac.cn
@@ -25,6 +27,8 @@ public class DruidDatabase implements Database {
 	protected final Logger m_logger = Logger.getLogger(DruidDatabase.class.getName());
 	
 	protected final DruidExecutor executor;
+	
+	protected final Map<String, Table<?>> map = new HashMap<>();
 	
 	public DruidDatabase(DruidExecutor executor) {
 		super();
@@ -57,13 +61,18 @@ public class DruidDatabase implements Database {
 	}
 
 	@Override
-	public List<Table<?>> tables() {
-		return null;
+	public Collection<Table<?>> tables(QueryTable queryTable, String label) {
+		for (String name : this.executor.execWithValue(queryTable.toSQL(), label)) {
+			if (!map.containsKey(name)) {
+				map.put(name, new DruidTable(executor, name));
+			}
+		}
+		return map.values();
 	}
 
 	@Override
 	public Table<?> get(String name) {
-		return new DruidTable<ResultSet>(executor, name);
+		return map.get(name);
 	}
 	
 }
