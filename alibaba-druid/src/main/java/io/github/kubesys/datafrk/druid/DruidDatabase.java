@@ -1,0 +1,78 @@
+/*
+
+ * Copyright (2021, ) Institute of Software, Chinese Academy of Sciences
+ */
+package io.github.kubesys.datafrk.druid;
+
+import java.sql.SQLException;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Logger;
+
+import io.github.kubesys.datafrk.core.Database;
+import io.github.kubesys.datafrk.core.Table;
+import io.github.kubesys.datafrk.core.operators.CheckTable;
+import io.github.kubesys.datafrk.core.operators.CreateTable;
+import io.github.kubesys.datafrk.core.operators.DropTable;
+import io.github.kubesys.datafrk.core.operators.QueryTable;
+
+/**
+ * @author wuheng@iscas.ac.cn
+ * @since 2.0.0
+ *
+ */
+public class DruidDatabase implements Database {
+
+	protected final Logger m_logger = Logger.getLogger(DruidDatabase.class.getName());
+	
+	protected final DruidExecutor executor;
+	
+	protected final Map<String, Table<?>> map = new HashMap<>();
+	
+	public DruidDatabase(DruidExecutor executor) {
+		super();
+		this.executor = executor;
+	}
+
+	@Override
+	public String getSchema() {
+		try {
+			return "create database " + this.executor.getConnection().getCatalog();
+		} catch (SQLException e) {
+			m_logger.severe(e.toString());
+			return null;
+		}
+	}
+
+	@Override
+	public boolean createTable(CreateTable createTable) {
+		return this.executor.execWithStatus(createTable.toSQL());
+	}
+
+	@Override
+	public boolean checkTable(CheckTable checkTable) {
+		return this.executor.execWithStatus(checkTable.toSQL());
+	}
+
+	@Override
+	public boolean dropTable(DropTable dropTable) {
+		return this.executor.execWithStatus(dropTable.toSQL());
+	}
+
+	@Override
+	public Collection<Table<?>> tables(QueryTable queryTable, String label) {
+		for (String name : this.executor.execWithValue(queryTable.toSQL(), label)) {
+			if (!map.containsKey(name)) {
+				map.put(name, new DruidTable(executor, name));
+			}
+		}
+		return map.values();
+	}
+
+	@Override
+	public Table<?> get(String name) {
+		return map.get(name);
+	}
+	
+}

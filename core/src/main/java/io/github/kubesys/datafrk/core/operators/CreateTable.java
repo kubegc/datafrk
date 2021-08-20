@@ -11,6 +11,13 @@ import io.github.kubesys.datafrk.core.SQL;
  * @since 2.0.0
  *
  */
-public interface CreateTable extends SQL {
+public abstract class CreateTable implements SQL {
+	
+	protected final String table;
+	
+	public CreateTable(String table) {
+		super();
+		this.table = table;
+	}
 	
 }

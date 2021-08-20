@@ -5,15 +5,15 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>io.github.kubesys</groupId>
-	<artifactId>datafrk-postgre</artifactId>
+	<artifactId>datafrk-alibaba-druid</artifactId>
 	<version>2.0.0</version>
 	<packaging>jar</packaging>
 
-	<name>datafrk-postgre</name>
-	<description>datafrk-postgre</description>
+	<name>datafrk-alibaba-druid</name>
+	<description>datafrk-alibaba-sdruid</description>
 
 	<properties>
-		<postgre.version>42.2.23</postgre.version>
+		<druid.version>1.2.6</druid.version>
 		<datafrk.version>2.0.0</datafrk.version>
 	</properties>
 
@@ -26,17 +26,17 @@
 	</licenses>
 
 	<dependencies>
+		<!-- https://mvnrepository.com/artifact/com.alibaba/druid -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+			<version>${druid.version}</version>
+		</dependency>
+
 		<dependency>
 			<groupId>io.github.kubesys</groupId>
-			<artifactId>datafrk-alibaba-druid</artifactId>
+			<artifactId>datafrk-core</artifactId>
 			<version>${datafrk.version}</version>
-		</dependency>
-		
-		<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
-		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<version>${postgre.version}</version>
 		</dependency>
 	</dependencies>
 
