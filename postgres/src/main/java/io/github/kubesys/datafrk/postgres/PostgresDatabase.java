@@ -19,21 +19,24 @@ public class PostgresDatabase extends DruidDatabase {
 
 	public PostgresDatabase(DruidExecutor executor) {
 		super(executor);
+		this.tables();
 	}
 
 	@Override
 	public Collection<Table<?>> tables() {
-		for (String name : this.executor.execWithValue(listTableSQL(), listTableLabel())) {
-			if (!map.containsKey(name)) {
-				map.put(name, new PostgresTable(executor, name));
-			}
+		this.map.clear();
+		for (String name : this.executor.execWithValue(
+					listTableSQL(), listTableLabel())) {
+			map.put(name, new PostgresTable(executor, name));
 		}
 		return map.values();
 	}
 	
 	@Override
 	public String listTableSQL() {
-		return "SELECT relname FROM pg_class c WHERE relkind = 'r' AND relname not like 'pg_%' AND relname not like 'sql_%' ORDER BY relname";
+		return "SELECT relname FROM pg_class c WHERE relkind = 'r' "
+				+ "AND relname not like 'pg_%' AND relname not like 'sql_%' "
+				+ "ORDER BY relname";
 	}
 
 	@Override
