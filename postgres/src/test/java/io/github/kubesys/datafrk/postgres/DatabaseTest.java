@@ -19,16 +19,27 @@ public class DatabaseTest {
 
 	public static void main(String[] args) throws Exception {
 		DataContext context = DataContextBuilder.createDataContext();
-		database(context);
-//		table(context.currentDatabase());
+//		database(context);
+		table(context.currentDatabase());
 	}
 
-	protected static void table(Database database) {
+	static String sql = "CREATE TABLE public.henry2019 (\r\n"
+			+ "    name character varying(256)  NOT NULL,\r\n"
+			+ "    artifactid character varying(128)  NOT NULL,\r\n"
+			+ "    created timestamp without time zone  NOT NULL)";
+	
+	protected static void table(Database database) throws Exception {
+		
+		System.out.println(database.checkTable(new CheckPostgresTable("henry2019")));
+		System.out.println(database.createTable(new CreatePostgresTable(sql)));
+		System.out.println(database.checkTable(new CheckPostgresTable("henry2019")));
 		Collection<Table<?>> tables = database.tables();
 		for (Table<?> t : tables) {
 			System.out.println(t.name());
-			System.out.print(t.schema());
+			System.out.println(t.schema());
 		}
+		Thread.sleep(10000);
+		System.out.println(database.dropTable(new DropPostgresTable("henry2019")));
 	}
 
 	protected static void database(DataContext context) throws InterruptedException {
