@@ -4,13 +4,12 @@
  */
 package io.github.kubesys.datafrk.core.operators;
 
-import io.github.kubesys.datafrk.core.SQL;
-
 /**
  * @author wuheng@iscas.ac.cn
  * @since 2.0.0
  *
  */
-public interface InsertItem extends SQL {
+public interface UpdateDataBuilder {
 	
+	public UpdateData build(); 
 }

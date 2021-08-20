@@ -11,18 +11,17 @@ import io.github.kubesys.datafrk.core.SQL;
  * @since 2.0.0
  *
  */
-public class CreateTable implements SQL {
+public class QueryData implements SQL {
 	
-	protected final String createTableCommand;
+	protected final String queryDataCommand;
 	
-	public CreateTable(String createTableCommand) {
+	public QueryData(String queryDataCommand) {
 		super();
-		this.createTableCommand = createTableCommand;
+		this.queryDataCommand = queryDataCommand;
 	}
 
 	@Override
 	public String toSQL() {
-		return this.createTableCommand;
+		return this.queryDataCommand;
 	}
-	
 }

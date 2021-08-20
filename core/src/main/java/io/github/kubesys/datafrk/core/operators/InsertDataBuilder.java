@@ -4,13 +4,12 @@
  */
 package io.github.kubesys.datafrk.core.operators;
 
-import io.github.kubesys.datafrk.core.SQL;
-
 /**
  * @author wuheng@iscas.ac.cn
  * @since 2.0.0
  *
  */
-public interface DeleteItem extends SQL {
+public interface InsertDataBuilder {
 	
+	public InsertData build(); 
 }
