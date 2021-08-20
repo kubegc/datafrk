@@ -2,7 +2,7 @@
 
  * Copyright (2021, ) Institute of Software, Chinese Academy of Sciences
  */
-package io.github.kubesys.datafrk.postgre;
+package io.github.kubesys.datafrk.postgres;
 
 import io.github.kubesys.datafrk.core.operators.CheckDatabase;
 
@@ -11,10 +11,10 @@ import io.github.kubesys.datafrk.core.operators.CheckDatabase;
  * @since 2.0.0
  *
  */
-public class CheckPostgreDatabase extends CheckDatabase {
+public class CheckPostgresDatabase extends CheckDatabase {
 
 	
-	public CheckPostgreDatabase(String name) {
+	public CheckPostgresDatabase(String name) {
 		super(name);
 	}
 

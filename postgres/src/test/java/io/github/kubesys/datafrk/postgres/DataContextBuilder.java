@@ -2,7 +2,7 @@
 
  * Copyright (2021, ) Institute of Software, Chinese Academy of Sciences
  */
-package io.github.kubesys.datafrk.postgre;
+package io.github.kubesys.datafrk.postgres;
 
 import java.util.Properties;
 
@@ -30,6 +30,6 @@ public class DataContextBuilder {
 	}
 	
 	public static DruidDataContext createDataContext() throws Exception {
-		return new DruidDataContext(props);
+		return new PostgresDataContext(props);
 	}
 }

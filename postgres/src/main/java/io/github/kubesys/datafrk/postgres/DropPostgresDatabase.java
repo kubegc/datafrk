@@ -2,7 +2,7 @@
 
  * Copyright (2021, ) Institute of Software, Chinese Academy of Sciences
  */
-package io.github.kubesys.datafrk.postgre;
+package io.github.kubesys.datafrk.postgres;
 
 import io.github.kubesys.datafrk.core.operators.DropDatabase;
 
@@ -11,10 +11,10 @@ import io.github.kubesys.datafrk.core.operators.DropDatabase;
  * @since 2.0.0
  *
  */
-public class DropPostgreDatabase extends DropDatabase {
+public class DropPostgresDatabase extends DropDatabase {
 
 	
-	public DropPostgreDatabase(String name) {
+	public DropPostgresDatabase(String name) {
 		super(name);
 	}
 

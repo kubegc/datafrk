@@ -2,7 +2,7 @@
 
  * Copyright (2021, ) Institute of Software, Chinese Academy of Sciences
  */
-package io.github.kubesys.datafrk.postgre;
+package io.github.kubesys.datafrk.postgres;
 
 import io.github.kubesys.datafrk.core.operators.CreateDatabase;
 
@@ -11,10 +11,10 @@ import io.github.kubesys.datafrk.core.operators.CreateDatabase;
  * @since 2.0.0
  *
  */
-public class CreatePostgreDatabase extends CreateDatabase {
+public class CreatePostgresDatabase extends CreateDatabase {
 
 	
-	public CreatePostgreDatabase(String name) {
+	public CreatePostgresDatabase(String name) {
 		super(name);
 	}
 
