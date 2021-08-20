@@ -15,14 +15,13 @@ import io.github.kubesys.datafrk.core.Table;
 import io.github.kubesys.datafrk.core.operators.CheckTable;
 import io.github.kubesys.datafrk.core.operators.CreateTable;
 import io.github.kubesys.datafrk.core.operators.DropTable;
-import io.github.kubesys.datafrk.core.operators.QueryTable;
 
 /**
  * @author wuheng@iscas.ac.cn
  * @since 2.0.0
  *
  */
-public class DruidDatabase implements Database {
+public abstract class DruidDatabase implements Database {
 
 	protected final Logger m_logger = Logger.getLogger(DruidDatabase.class.getName());
 	
@@ -38,7 +37,7 @@ public class DruidDatabase implements Database {
 	@Override
 	public String getSchema() {
 		try {
-			return "create database " + this.executor.getConnection().getCatalog();
+			return "CREATE database " + this.executor.getConnection().getCatalog();
 		} catch (SQLException e) {
 			m_logger.severe(e.toString());
 			return null;
@@ -61,8 +60,8 @@ public class DruidDatabase implements Database {
 	}
 
 	@Override
-	public Collection<Table<?>> tables(QueryTable queryTable, String label) {
-		for (String name : this.executor.execWithValue(queryTable.toSQL(), label)) {
+	public Collection<Table<?>> tables() {
+		for (String name : this.executor.execWithValue(listTableSQL(), listTableLabel())) {
 			if (!map.containsKey(name)) {
 				map.put(name, new DruidTable(executor, name));
 			}
@@ -75,4 +74,8 @@ public class DruidDatabase implements Database {
 		return map.get(name);
 	}
 	
+	
+	public abstract String listTableSQL();
+	
+	public abstract String listTableLabel();
 }

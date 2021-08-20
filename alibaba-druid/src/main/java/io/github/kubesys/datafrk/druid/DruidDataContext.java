@@ -9,7 +9,6 @@ import java.util.Properties;
 import com.alibaba.druid.pool.DruidDataSource;
 
 import io.github.kubesys.datafrk.core.DataContext;
-import io.github.kubesys.datafrk.core.Database;
 import io.github.kubesys.datafrk.core.operators.CheckDatabase;
 import io.github.kubesys.datafrk.core.operators.CreateDatabase;
 import io.github.kubesys.datafrk.core.operators.DropDatabase;
@@ -19,7 +18,7 @@ import io.github.kubesys.datafrk.core.operators.DropDatabase;
  * @since 2.0.0
  *
  */
-public class DruidDataContext implements DataContext {
+public abstract class DruidDataContext implements DataContext {
 
 	protected final DruidExecutor executor;
 	
@@ -42,11 +41,6 @@ public class DruidDataContext implements DataContext {
 			dataSource.configFromPropety(props);
 			this.executor = new DruidExecutor(dataSource.getConnection());
 		} 
-	}
-
-	@Override
-	public Database currentDatabase() {
-		return new DruidDatabase(executor);
 	}
 
 	@Override
