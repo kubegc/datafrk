@@ -11,13 +11,18 @@ import io.github.kubesys.datafrk.core.SQL;
  * @since 2.0.0
  *
  */
-public abstract class CreateTable implements SQL {
+public class CreateTable implements SQL {
 	
-	protected final String table;
+	protected final String sql;
 	
 	public CreateTable(String table) {
 		super();
-		this.table = table;
+		this.sql = table;
+	}
+
+	@Override
+	public String toSQL() {
+		return this.sql;
 	}
 	
 }

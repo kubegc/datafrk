@@ -11,6 +11,12 @@ import io.github.kubesys.datafrk.core.SQL;
  * @since 2.0.0
  *
  */
-public interface CheckTable extends SQL {
+public abstract class CheckTable implements SQL {
 	
+	protected final String name;
+
+	public CheckTable(String name) {
+		super();
+		this.name = name;
+	}
 }

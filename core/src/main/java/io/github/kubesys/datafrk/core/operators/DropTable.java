@@ -11,6 +11,13 @@ import io.github.kubesys.datafrk.core.SQL;
  * @since 2.0.0
  *
  */
-public interface DropTable extends SQL {
+public abstract class DropTable implements SQL {
+	
+	protected final String name;
+
+	public DropTable(String name) {
+		super();
+		this.name = name;
+	}
 	
 }
