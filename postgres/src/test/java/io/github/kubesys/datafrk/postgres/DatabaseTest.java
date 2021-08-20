@@ -4,7 +4,10 @@
  */
 package io.github.kubesys.datafrk.postgres;
 
+import java.util.Collection;
+
 import io.github.kubesys.datafrk.core.DataContext;
+import io.github.kubesys.datafrk.core.Table;
 
 /**
  * @author wuheng@iscas.ac.cn
@@ -15,6 +18,16 @@ public class DatabaseTest {
 
 	public static void main(String[] args) throws Exception {
 		DataContext context = DataContextBuilder.createDataContext();
+//		database(context);
+		Collection<Table<?>> tables = context.currentDatabase().tables();
+		for (Table<?> t : tables) {
+			System.out.println(t.name());
+			System.out.print(t.schema());
+		}
+	}
+
+	protected static void database(DataContext context) throws InterruptedException {
+		System.out.println(context.currentDatabase().schema());
 		System.out.println(context.checkDababase(new CheckPostgresDatabase("abc")));
 		Thread.sleep(10000);
 		System.out.println(context.createDatabase(new CreatePostgresDatabase("abc")));

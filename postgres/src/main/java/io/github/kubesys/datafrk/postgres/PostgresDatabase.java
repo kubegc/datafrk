@@ -4,6 +4,9 @@
  */
 package io.github.kubesys.datafrk.postgres;
 
+import java.util.Collection;
+
+import io.github.kubesys.datafrk.core.Table;
 import io.github.kubesys.datafrk.druid.DruidDatabase;
 import io.github.kubesys.datafrk.druid.DruidExecutor;
 
@@ -19,13 +22,23 @@ public class PostgresDatabase extends DruidDatabase {
 	}
 
 	@Override
+	public Collection<Table<?>> tables() {
+		for (String name : this.executor.execWithValue(listTableSQL(), listTableLabel())) {
+			if (!map.containsKey(name)) {
+				map.put(name, new PostgresTable(executor, name));
+			}
+		}
+		return map.values();
+	}
+	
+	@Override
 	public String listTableSQL() {
-		return null;
+		return "SELECT relname FROM pg_class c WHERE relkind = 'r' AND relname not like 'pg_%' AND relname not like 'sql_%' ORDER BY relname";
 	}
 
 	@Override
 	public String listTableLabel() {
-		return null;
+		return "relname";
 	}
 
 }
