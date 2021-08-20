@@ -4,6 +4,7 @@
  */
 package io.github.kubesys.datafrk.druid;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
@@ -50,7 +51,13 @@ public abstract class DruidDatabase implements Database {
 
 	@Override
 	public boolean checkTable(CheckTable checkTable) {
-		return this.executor.execWithStatus(checkTable.toSQL());
+		try {
+			ResultSet rs = this.executor.execWithResult(checkTable.toSQL());
+			rs.next();
+			return rs.getInt("num") != 0;
+		} catch (Exception ex) {
+			return false;
+		}
 	}
 
 	@Override
