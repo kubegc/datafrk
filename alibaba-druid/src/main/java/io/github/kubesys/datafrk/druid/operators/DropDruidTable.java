@@ -2,7 +2,7 @@
 
  * Copyright (2021, ) Institute of Software, Chinese Academy of Sciences
  */
-package io.github.kubesys.datafrk.druid;
+package io.github.kubesys.datafrk.druid.operators;
 
 import io.github.kubesys.datafrk.core.operators.DropTable;
 
@@ -11,9 +11,9 @@ import io.github.kubesys.datafrk.core.operators.DropTable;
  * @since 2.0.0
  *
  */
-public class DruidDropTable extends DropTable {
+public class DropDruidTable extends DropTable {
 
-	public DruidDropTable(String name) {
+	public DropDruidTable(String name) {
 		super(name);
 	}
 
@@ -21,5 +21,4 @@ public class DruidDropTable extends DropTable {
 	public String toSQL() {
 		return "DROP table " + this.name;
 	}
-	
 }

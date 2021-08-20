@@ -7,10 +7,10 @@ package io.github.kubesys.datafrk.druid;
 import java.sql.ResultSet;
 
 import io.github.kubesys.datafrk.core.Table;
-import io.github.kubesys.datafrk.core.operators.DeleteItem;
-import io.github.kubesys.datafrk.core.operators.InsertItem;
-import io.github.kubesys.datafrk.core.operators.QueryItem;
-import io.github.kubesys.datafrk.core.operators.UpdateItem;
+import io.github.kubesys.datafrk.core.operators.RemoveData;
+import io.github.kubesys.datafrk.core.operators.InsertData;
+import io.github.kubesys.datafrk.core.operators.QueryData;
+import io.github.kubesys.datafrk.core.operators.UpdateData;
 
 /**
  * @author wuheng@iscas.ac.cn
@@ -30,28 +30,49 @@ public abstract class DruidTable implements Table<ResultSet> {
 	}
 
 	@Override
-	public ResultSet query(QueryItem query) {
-		return this.executor.execWithResult(query.toSQL());
+	public ResultSet query(QueryData query) {
+		if (check(query.toSQL().toLowerCase(), "from")) {
+			return this.executor.execWithResult(query.toSQL());
+		} else {
+			throw new RuntimeException("the table name in " + query.toSQL() + " is not " + this.name);
+		}
 	}
 
 	@Override
-	public boolean insert(InsertItem insert) {
-		return this.executor.execWithStatus(insert.toSQL());
+	public boolean insert(InsertData insert) {
+		if (check(insert.toSQL().toLowerCase(), "into")) {
+			return this.executor.execWithStatus(insert.toSQL());
+		} else {
+			throw new RuntimeException("the table name in " + insert.toSQL() + " is not " + this.name);
+		}
 	}
 
 	@Override
-	public boolean update(UpdateItem update) {
-		return this.executor.execWithStatus(update.toSQL());
+	public boolean update(UpdateData update) {
+		if (check(update.toSQL().toLowerCase(), "update")) {
+			return this.executor.execWithStatus(update.toSQL());
+		} else {
+			throw new RuntimeException("the table name in " + update.toSQL() + " is not " + this.name);
+		}
 	}
 
 	@Override
-	public boolean delete(DeleteItem delete) {
-		return this.executor.execWithStatus(delete.toSQL());
+	public boolean delete(RemoveData delete) {
+		if (check(delete.toSQL().toLowerCase(), "from")) {
+			return this.executor.execWithStatus(delete.toSQL());
+		} else {
+			throw new RuntimeException("the table name in " + delete.toSQL() + " is not " + this.name);
+		}
 	}
 
 	@Override
 	public String name() {
 		return this.name;
+	}
+	
+	private boolean check(String sql, String key) {
+		int idx = sql.indexOf(key);
+		return sql.substring(idx + 1).startsWith(" " + this.name.toLowerCase() + " ");
 	}
 	
 }
