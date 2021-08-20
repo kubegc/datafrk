@@ -16,12 +16,15 @@ import io.github.kubesys.datafrk.druid.DruidDataContext;
  */
 public class PostgresDataContext extends DruidDataContext {
 
+	protected final PostgresDatabase database;
+	
 	public PostgresDataContext(Properties props) throws Exception {
 		super(props);
+		this.database = new PostgresDatabase(executor);
 	}
 
 	@Override
 	public Database currentDatabase() {
-		return new PostgresDatabase(executor);
+		return this.database;
 	}
 }

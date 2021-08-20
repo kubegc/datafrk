@@ -7,6 +7,7 @@ package io.github.kubesys.datafrk.postgres;
 import java.util.Collection;
 
 import io.github.kubesys.datafrk.core.DataContext;
+import io.github.kubesys.datafrk.core.Database;
 import io.github.kubesys.datafrk.core.Table;
 
 /**
@@ -18,8 +19,12 @@ public class DatabaseTest {
 
 	public static void main(String[] args) throws Exception {
 		DataContext context = DataContextBuilder.createDataContext();
-//		database(context);
-		Collection<Table<?>> tables = context.currentDatabase().tables();
+		database(context);
+//		table(context.currentDatabase());
+	}
+
+	protected static void table(Database database) {
+		Collection<Table<?>> tables = database.tables();
 		for (Table<?> t : tables) {
 			System.out.println(t.name());
 			System.out.print(t.schema());
