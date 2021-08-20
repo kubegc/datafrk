@@ -35,7 +35,7 @@ public abstract class DruidDatabase implements Database {
 	}
 
 	@Override
-	public String getSchema() {
+	public String schema() {
 		try {
 			return "CREATE database " + this.executor.getConnection().getCatalog();
 		} catch (SQLException e) {

@@ -31,7 +31,7 @@ public class DruidTable implements Table<ResultSet> {
 
 	@Override
 	// TODO
-	public String getSchema() {
+	public String schema() {
 		return null;
 	}
 
@@ -53,6 +53,11 @@ public class DruidTable implements Table<ResultSet> {
 	@Override
 	public boolean delete(DeleteItem delete) {
 		return this.executor.execWithStatus(delete.toSQL());
+	}
+
+	@Override
+	public String name() {
+		return this.name;
 	}
 	
 }
