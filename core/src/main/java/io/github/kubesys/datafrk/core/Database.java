@@ -9,7 +9,6 @@ import java.util.Collection;
 import io.github.kubesys.datafrk.core.operators.CheckTable;
 import io.github.kubesys.datafrk.core.operators.CreateTable;
 import io.github.kubesys.datafrk.core.operators.DropTable;
-import io.github.kubesys.datafrk.core.operators.QueryTable;
 
 /**
  * @author wuheng@iscas.ac.cn
@@ -24,7 +23,7 @@ public interface Database extends Schema {
 	
 	public boolean dropTable(DropTable dropTable);
 	
-	public Collection<Table<?>> tables(QueryTable queryTable, String label);
+	public Collection<Table<?>> tables();
 	
 	public Table<?> get(String name);
 }
