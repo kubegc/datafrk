@@ -5,7 +5,6 @@
 package io.github.kubesys.datafrk.druid;
 
 import java.sql.SQLException;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -60,20 +59,9 @@ public abstract class DruidDatabase implements Database {
 	}
 
 	@Override
-	public Collection<Table<?>> tables() {
-		for (String name : this.executor.execWithValue(listTableSQL(), listTableLabel())) {
-			if (!map.containsKey(name)) {
-				map.put(name, new DruidTable(executor, name));
-			}
-		}
-		return map.values();
-	}
-
-	@Override
 	public Table<?> get(String name) {
 		return map.get(name);
 	}
-	
 	
 	public abstract String listTableSQL();
 	

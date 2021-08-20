@@ -17,7 +17,7 @@ import io.github.kubesys.datafrk.core.operators.UpdateItem;
  * @since 2.0.0
  *
  */
-public class DruidTable implements Table<ResultSet> {
+public abstract class DruidTable implements Table<ResultSet> {
 
 	protected final DruidExecutor executor;
 	
@@ -27,12 +27,6 @@ public class DruidTable implements Table<ResultSet> {
 		super();
 		this.executor = executor;
 		this.name = name;
-	}
-
-	@Override
-	// TODO
-	public String schema() {
-		return null;
 	}
 
 	@Override
