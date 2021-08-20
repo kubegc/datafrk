@@ -11,5 +11,5 @@ package io.github.kubesys.datafrk.core;
  */
 public interface Schema {
 	
-	public String getSchema();
+	public String schema();
 }

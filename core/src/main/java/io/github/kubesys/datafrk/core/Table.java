@@ -23,4 +23,6 @@ public interface Table<T> extends Schema {
 	public boolean update(UpdateItem update);
 	
 	public boolean delete(DeleteItem delete);
+	
+	public String name();
 }
