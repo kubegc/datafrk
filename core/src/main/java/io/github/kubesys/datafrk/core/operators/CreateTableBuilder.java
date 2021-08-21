@@ -9,7 +9,9 @@ package io.github.kubesys.datafrk.core.operators;
  * @since 2.0.0
  *
  */
-public interface CreateTableBuilder {
+public class CreateTableBuilder extends AbstractBuilder<CreateTable> {
 	
-	public CreateTable build(); 
+	public CreateTable build() {
+		return new CreateTable(stringBuilder.toString());
+	}
 }

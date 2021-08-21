@@ -4,24 +4,15 @@
  */
 package io.github.kubesys.datafrk.core.operators;
 
-import io.github.kubesys.datafrk.core.SQL;
-
 /**
  * @author wuheng@iscas.ac.cn
  * @since 2.0.0
  *
  */
-public class InsertData implements SQL {
+public class InsertData extends CommandSQL {
 
-	protected final String insertDataCommand;
-	
-	InsertData(String insertDataCommand) {
-		super();
-		this.insertDataCommand = insertDataCommand;
+	public InsertData(String command) {
+		super(command);
 	}
-	
-	@Override
-	public String toSQL() {
-		return this.insertDataCommand;
-	}
+
 }

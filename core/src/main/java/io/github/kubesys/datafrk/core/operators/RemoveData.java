@@ -4,24 +4,15 @@
  */
 package io.github.kubesys.datafrk.core.operators;
 
-import io.github.kubesys.datafrk.core.SQL;
-
 /**
  * @author wuheng@iscas.ac.cn
  * @since 2.0.0
  *
  */
-public class RemoveData implements SQL {
-	
-	protected final String removeDataCommand;
-	
-	RemoveData(String removeDataCommand) {
-		super();
-		this.removeDataCommand = removeDataCommand;
-	}
+public class RemoveData extends CommandSQL {
 
-	@Override
-	public String toSQL() {
-		return this.removeDataCommand;
+	public RemoveData(String command) {
+		super(command);
 	}
+	
 }

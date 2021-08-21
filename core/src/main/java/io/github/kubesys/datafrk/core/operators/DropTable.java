@@ -4,20 +4,15 @@
  */
 package io.github.kubesys.datafrk.core.operators;
 
-import io.github.kubesys.datafrk.core.SQL;
-
 /**
  * @author wuheng@iscas.ac.cn
  * @since 2.0.0
  *
  */
-public abstract class DropTable implements SQL {
-	
-	protected final String name;
+public abstract class DropTable extends NameSQL {
 
 	public DropTable(String name) {
-		super();
-		this.name = name;
+		super(name);
 	}
 	
 }

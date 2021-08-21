@@ -9,7 +9,9 @@ package io.github.kubesys.datafrk.core.operators;
  * @since 2.0.0
  *
  */
-public interface UpdateDataBuilder {
+public class UpdateDataBuilder extends AbstractBuilder<UpdateData> {
 	
-	public UpdateData build(); 
+	public UpdateData build() {
+		return new UpdateData(stringBuilder.toString());
+	}
 }

@@ -4,25 +4,15 @@
  */
 package io.github.kubesys.datafrk.core.operators;
 
-import io.github.kubesys.datafrk.core.SQL;
-
 /**
  * @author wuheng@iscas.ac.cn
  * @since 2.0.0
  *
  */
-public class CreateTable implements SQL {
-	
-	protected final String createTableCommand;
-	
-	public CreateTable(String createTableCommand) {
-		super();
-		this.createTableCommand = createTableCommand;
-	}
+public class CreateTable extends CommandSQL {
 
-	@Override
-	public String toSQL() {
-		return this.createTableCommand;
+	public CreateTable(String command) {
+		super(command);
 	}
 	
 }

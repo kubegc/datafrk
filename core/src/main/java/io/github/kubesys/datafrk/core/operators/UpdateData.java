@@ -4,24 +4,15 @@
  */
 package io.github.kubesys.datafrk.core.operators;
 
-import io.github.kubesys.datafrk.core.SQL;
-
 /**
  * @author wuheng@iscas.ac.cn
  * @since 2.0.0
  *
  */
-public class UpdateData implements SQL {
-	
-	protected final String updateDataCommand;
-	
-	UpdateData(String updateDataCommand) {
-		super();
-		this.updateDataCommand = updateDataCommand;
-	}
+public class UpdateData extends CommandSQL {
 
-	@Override
-	public String toSQL() {
-		return this.updateDataCommand;
+	public UpdateData(String command) {
+		super(command);
 	}
+	
 }

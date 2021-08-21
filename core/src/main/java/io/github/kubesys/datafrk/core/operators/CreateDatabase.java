@@ -4,20 +4,16 @@
  */
 package io.github.kubesys.datafrk.core.operators;
 
-import io.github.kubesys.datafrk.core.SQL;
 
 /**
  * @author wuheng@iscas.ac.cn
  * @since 2.0.0
  *
  */
-public abstract class CreateDatabase implements SQL {
-	
-	protected final String name;
+public abstract class CreateDatabase extends NameSQL {
 
 	public CreateDatabase(String name) {
-		super();
-		this.name = name;
+		super(name);
 	}
 	
 }
