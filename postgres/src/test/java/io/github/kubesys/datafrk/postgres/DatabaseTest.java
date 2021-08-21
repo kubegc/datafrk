@@ -9,6 +9,13 @@ import java.util.Collection;
 import io.github.kubesys.datafrk.core.DataContext;
 import io.github.kubesys.datafrk.core.Database;
 import io.github.kubesys.datafrk.core.Table;
+import io.github.kubesys.datafrk.core.operators.CreateTable;
+import io.github.kubesys.datafrk.core.operators.CreateTableBuilder;
+import io.github.kubesys.datafrk.postgres.operators.CheckPostgresDatabase;
+import io.github.kubesys.datafrk.postgres.operators.CheckPostgresTable;
+import io.github.kubesys.datafrk.postgres.operators.CreatePostgresDatabase;
+import io.github.kubesys.datafrk.postgres.operators.DropPostgresDatabase;
+import io.github.kubesys.datafrk.postgres.operators.DropPostgresTable;
 
 /**
  * @author wuheng@iscas.ac.cn
@@ -31,7 +38,7 @@ public class DatabaseTest {
 	protected static void table(Database database) throws Exception {
 		
 		System.out.println(database.checkTable(new CheckPostgresTable("henry2019")));
-		System.out.println(database.createTable(new CreatePostgresTable(sql)));
+		System.out.println(database.createTable(new CreateTableBuilder().sql(sql).build()));
 		System.out.println(database.checkTable(new CheckPostgresTable("henry2019")));
 		Collection<Table<?>> tables = database.tables();
 		for (Table<?> t : tables) {

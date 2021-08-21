@@ -2,7 +2,7 @@
 
  * Copyright (2021, ) Institute of Software, Chinese Academy of Sciences
  */
-package io.github.kubesys.datafrk.postgres;
+package io.github.kubesys.datafrk.postgres.operators;
 
 import io.github.kubesys.datafrk.core.operators.CheckDatabase;
 

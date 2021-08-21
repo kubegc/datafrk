@@ -2,7 +2,7 @@
 
  * Copyright (2021, ) Institute of Software, Chinese Academy of Sciences
  */
-package io.github.kubesys.datafrk.postgres;
+package io.github.kubesys.datafrk.postgres.operators;
 
 import io.github.kubesys.datafrk.core.operators.CreateTable;
 
@@ -13,8 +13,7 @@ import io.github.kubesys.datafrk.core.operators.CreateTable;
  */
 public class CreatePostgresTable extends CreateTable {
 
-	public CreatePostgresTable(String sql) {
-		super(sql);
+	protected CreatePostgresTable(String createTableCommand) {
+		super(createTableCommand);
 	}
-
 }
