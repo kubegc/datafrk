@@ -15,7 +15,7 @@ public class UpdateData implements SQL {
 	
 	protected final String updateDataCommand;
 	
-	public UpdateData(String updateDataCommand) {
+	UpdateData(String updateDataCommand) {
 		super();
 		this.updateDataCommand = updateDataCommand;
 	}

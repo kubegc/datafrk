@@ -15,7 +15,7 @@ public class RemoveData implements SQL {
 	
 	protected final String removeDataCommand;
 	
-	public RemoveData(String removeDataCommand) {
+	RemoveData(String removeDataCommand) {
 		super();
 		this.removeDataCommand = removeDataCommand;
 	}

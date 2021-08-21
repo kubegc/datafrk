@@ -15,7 +15,7 @@ public class QueryData implements SQL {
 	
 	protected final String queryDataCommand;
 	
-	public QueryData(String queryDataCommand) {
+	QueryData(String queryDataCommand) {
 		super();
 		this.queryDataCommand = queryDataCommand;
 	}

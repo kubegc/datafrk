@@ -15,7 +15,7 @@ public class InsertData implements SQL {
 
 	protected final String insertDataCommand;
 	
-	public InsertData(String insertDataCommand) {
+	InsertData(String insertDataCommand) {
 		super();
 		this.insertDataCommand = insertDataCommand;
 	}
