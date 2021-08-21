@@ -9,9 +9,6 @@ package io.github.kubesys.datafrk.core.operators;
  * @since 2.0.0
  *
  */
-public class QueryDataBuilder extends AbstractBuilder<QueryData> {
+public class QueryDataBuilder extends AbstractBuilder<QueryDataBuilder, QueryData> {
 	
-	public QueryData build() {
-		return new QueryData(stringBuilder.toString());
-	}
 }

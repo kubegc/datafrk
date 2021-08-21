@@ -9,9 +9,6 @@ package io.github.kubesys.datafrk.core.operators;
  * @since 2.0.0
  *
  */
-public class RemoveDataBuilder extends AbstractBuilder<RemoveData> {
+public class RemoveDataBuilder extends AbstractBuilder<RemoveDataBuilder, RemoveData> {
 		
-	public RemoveData build() {
-		return new RemoveData(stringBuilder.toString());
-	}
 }

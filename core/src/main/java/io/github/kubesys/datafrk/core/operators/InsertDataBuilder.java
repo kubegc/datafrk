@@ -9,9 +9,6 @@ package io.github.kubesys.datafrk.core.operators;
  * @since 2.0.0
  *
  */
-public class InsertDataBuilder extends AbstractBuilder<InsertData> {
+public class InsertDataBuilder extends AbstractBuilder<InsertDataBuilder, InsertData> {
 	
-	public InsertData build() {
-		return new InsertData(stringBuilder.toString());
-	}
 }

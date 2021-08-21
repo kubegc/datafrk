@@ -4,38 +4,29 @@
  */
 package io.github.kubesys.datafrk.core.operators;
 
+import java.lang.reflect.Constructor;
+
 /**
  * @author wuheng@iscas.ac.cn
  * @since 2.0.0
  *
  */
-public abstract class AbstractBuilder<T extends CommandSQL> {
+public abstract class AbstractBuilder<S, T> {
 	
-protected StringBuilder stringBuilder;
+	protected static StringBuilder stringBuilder = new StringBuilder();
 	
-	protected boolean isEnd = false;
-	
-	public AbstractBuilder() {
-		super();
+	@SuppressWarnings("unchecked")
+	public S sql(String sql) {
+		stringBuilder.append(sql);
+		return (S) this;
 	}
 	
-	@SuppressWarnings("rawtypes")
-	public AbstractBuilder begin() {
-		this.stringBuilder = new StringBuilder();
-		return this;
+	@SuppressWarnings("unchecked")
+	public T build() throws Exception {
+		String typename = getClass().getGenericSuperclass().getTypeName();
+		int idx = typename.indexOf(",");
+		String classname = typename.substring(idx + 1, typename.length() - 1).trim();
+		Constructor<?> c = Class.forName(classname).getConstructor(String.class);
+		return (T) c.newInstance(stringBuilder.toString());
 	}
-
-	@SuppressWarnings("rawtypes")
-	public AbstractBuilder sql(String sql) {
-		this.stringBuilder.append(sql);
-		return this;
-	}
-	
-	@SuppressWarnings("rawtypes")
-	public AbstractBuilder end() {
-		this.isEnd = true;
-		return this;
-	}
-	
-	public abstract T build();
 }
