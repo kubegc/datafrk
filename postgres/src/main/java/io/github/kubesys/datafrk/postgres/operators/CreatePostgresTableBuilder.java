@@ -4,6 +4,7 @@
  */
 package io.github.kubesys.datafrk.postgres.operators;
 
+import io.github.kubesys.datafrk.core.operators.CreateTable;
 import io.github.kubesys.datafrk.core.operators.CreateTableBuilder;
 
 /**
@@ -11,6 +12,6 @@ import io.github.kubesys.datafrk.core.operators.CreateTableBuilder;
  * @since 2.0.0
  *
  */
-public class CreatePostgresTableBuilder extends CreateTableBuilder {
+public class CreatePostgresTableBuilder extends CreateTableBuilder<CreatePostgresTableBuilder, CreateTable> {
 
 }

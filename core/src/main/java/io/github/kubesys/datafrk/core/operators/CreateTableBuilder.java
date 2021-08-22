@@ -9,6 +9,6 @@ package io.github.kubesys.datafrk.core.operators;
  * @since 2.0.0
  *
  */
-public class CreateTableBuilder extends AbstractBuilder<CreateTableBuilder, CreateTable> {
+public abstract class CreateTableBuilder<S, T> extends AbstractBuilder<S, T> {
 	
 }
