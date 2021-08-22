@@ -47,5 +47,4 @@ public abstract class UpdateDataBuilder<S, T> extends AbstractBuilder<S, T> {
 		return (S) this;
 	}
 	
-	public abstract S eq(String value, boolean json);
 }
