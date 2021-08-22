@@ -16,19 +16,28 @@ public class InsertPostgresDataBuilder extends InsertDataBuilder<InsertPostgresD
 
 	@Override
 	public InsertPostgresDataBuilder beginValue(String value, boolean json) {
-		stringBuilder.append(!json ? beginValue(value) : beginValue(value) + "::json");
+		if (!json) {
+			return beginValue(value);
+		}
+		stringBuilder.append(" VALUES('" + value + "'::json");
 		return this;
 	}
 
 	@Override
 	public InsertPostgresDataBuilder andValue(String value, boolean json) {
-		stringBuilder.append(!json ? andValue(value) : andValue(value) + "::json");
+		if (!json) {
+			return andValue(value);
+		}
+		stringBuilder.append(", '" + value + "'::json");
 		return this;
 	}
 
 	@Override
 	public InsertPostgresDataBuilder endValue(String value, boolean json) {
-		stringBuilder.append(!json ? endValue(value) : ", '" + value + "'::json)");
+		if (!json) {
+			return endValue(value);
+		}
+		stringBuilder.append(", '" + value + "'::json)");
 		return this;
 	}
 	
