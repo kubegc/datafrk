@@ -26,4 +26,6 @@ public interface Database extends Schema {
 	public Collection<Table<?>> tables();
 	
 	public Table<?> get(String name);
+	
+	public void close();
 }
