@@ -65,6 +65,12 @@ public abstract class DruidDatabase implements Database {
 		return this.executor.execWithStatus(dropTable.toSQL());
 	}
 
+	
+	@Override
+	public void close() throws Exception {
+		this.executor.close();
+	}
+
 	@Override
 	public Table<?> get(String name) {
 		return map.get(name);

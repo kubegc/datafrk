@@ -114,4 +114,8 @@ public class DruidExecutor {
 		}
 		return list;
 	}
+	
+	public void close() throws Exception {
+		this.conn.close();
+	}
 }
