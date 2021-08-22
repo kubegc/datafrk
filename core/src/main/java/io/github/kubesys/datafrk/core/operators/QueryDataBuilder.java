@@ -28,7 +28,7 @@ public abstract class QueryDataBuilder<S, T> extends AbstractBuilder<S, T> {
 	}
 	
 	public S and(String label) {
-		stringBuilder.append(" " + label);
+		stringBuilder.append(" and " + label);
 		return (S) this;
 	}
 	
