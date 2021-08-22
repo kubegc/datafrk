@@ -14,7 +14,7 @@ import java.lang.reflect.Constructor;
 @SuppressWarnings("unchecked")
 public abstract class AbstractBuilder<S, T> {
 	
-	protected static StringBuilder stringBuilder = new StringBuilder();
+	protected StringBuilder stringBuilder = new StringBuilder();
 	
 	public S sql(String sql) {
 		stringBuilder.append(sql);
