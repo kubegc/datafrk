@@ -36,4 +36,6 @@ public abstract class ConditionBuilder<S, T> extends AbstractBuilder<S, T> {
 		stringBuilder.append(" like '%" + value + "%'");
 		return (S) this;
 	}
+	
+	public abstract S eq(String value, boolean json);
 }
