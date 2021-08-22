@@ -73,6 +73,7 @@ public abstract class DruidDatabase implements Database {
 
 	@Override
 	public Table<?> get(String name) {
+		this.tables();
 		return map.get(name);
 	}
 	
