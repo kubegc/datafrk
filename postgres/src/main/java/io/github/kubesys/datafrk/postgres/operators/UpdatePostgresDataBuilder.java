@@ -14,4 +14,13 @@ import io.github.kubesys.datafrk.core.operators.UpdateDataBuilder;
  */
 public class UpdatePostgresDataBuilder extends UpdateDataBuilder<UpdatePostgresDataBuilder, UpdateData> {
 
+	@Override
+	public UpdatePostgresDataBuilder eq(String value, boolean json) {
+		if (!json) {
+			return eq(value);
+		}
+		stringBuilder.append(" = '" + value + "'::json");
+		return this;
+	}
+
 }

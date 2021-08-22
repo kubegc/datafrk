@@ -21,5 +21,14 @@ public class QueryPostgresDataBuilder extends QueryDataBuilder<QueryPostgresData
 		stringBuilder.append(" LIMIT ").append(l).append(" OFFSET ").append((p - 1) * l);
 		return this;
 	}
+
+	@Override
+	public QueryPostgresDataBuilder eq(String value, boolean json) {
+		if (!json) {
+			return eq(value);
+		}
+		stringBuilder.append(" = '" + value + "'::json");
+		return this;
+	}
 	
 }
