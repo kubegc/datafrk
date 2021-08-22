@@ -27,5 +27,5 @@ public interface Database extends Schema {
 	
 	public Table<?> get(String name);
 	
-	public void close();
+	public void close() throws Exception;
 }
