@@ -11,17 +11,16 @@ import java.lang.reflect.Constructor;
  * @since 2.0.0
  *
  */
+@SuppressWarnings("unchecked")
 public abstract class AbstractBuilder<S, T> {
 	
 	protected static StringBuilder stringBuilder = new StringBuilder();
 	
-	@SuppressWarnings("unchecked")
 	public S sql(String sql) {
 		stringBuilder.append(sql);
 		return (S) this;
 	}
 	
-	@SuppressWarnings("unchecked")
 	public T build() throws Exception {
 		String typename = getClass().getGenericSuperclass().getTypeName();
 		int idx = typename.indexOf(",");
@@ -30,3 +29,5 @@ public abstract class AbstractBuilder<S, T> {
 		return (T) c.newInstance(stringBuilder.toString());
 	}
 }
+
+
