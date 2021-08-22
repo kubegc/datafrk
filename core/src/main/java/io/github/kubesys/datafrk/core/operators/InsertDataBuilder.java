@@ -18,12 +18,12 @@ public abstract class InsertDataBuilder<S, T> extends AbstractBuilder<S, T> {
 	}
 	
 	public S beginValue(String value) {
-		stringBuilder.append(" ('" + value + "'");
+		stringBuilder.append(" VALUES('" + value + "'");
 		return (S) this;
 	}
 	
 	public S beginValue(int value) {
-		stringBuilder.append(" (" + value);
+		stringBuilder.append(" VALUES(" + value);
 		return (S) this;
 	}
 	
