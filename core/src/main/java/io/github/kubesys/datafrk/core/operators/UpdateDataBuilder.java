@@ -10,7 +10,7 @@ package io.github.kubesys.datafrk.core.operators;
  *
  */
 @SuppressWarnings("unchecked")
-public abstract class UpdateDataBuilder<S, T> extends AbstractBuilder<S, T> {
+public abstract class UpdateDataBuilder<S, T> extends ConditionBuilder<S, T> {
 	
 	public S update(String table) {
 		stringBuilder.append("UPDATE " + table);
@@ -24,26 +24,6 @@ public abstract class UpdateDataBuilder<S, T> extends AbstractBuilder<S, T> {
 	
 	public S andSet(String label) {
 		stringBuilder.append(", " + label);
-		return (S) this;
-	}
-	
-	public S where(String label) {
-		stringBuilder.append(" WHERE " + label);
-		return (S) this;
-	}
-	
-	public S and(String label) {
-		stringBuilder.append(" and " + label);
-		return (S) this;
-	}
-	
-	public S eq(String value) {
-		stringBuilder.append(" = '" + value + "'");
-		return (S) this;
-	}
-	
-	public S eq(int value) {
-		stringBuilder.append(" = " + value);
 		return (S) this;
 	}
 	
