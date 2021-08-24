@@ -40,6 +40,14 @@
 		</dependency>
 	</dependencies>
 
+	<repositories>
+		<repository>
+			<id>pdos-repos</id>
+			<name>PDOS Releases</name>
+			<url>http://39.100.71.73:31021/repository/maven-public/</url>
+		</repository>
+	</repositories>
+
 	<build>
 		<plugins>
 			<plugin>

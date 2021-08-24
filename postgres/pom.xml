@@ -31,7 +31,7 @@
 			<artifactId>datafrk-alibaba-druid</artifactId>
 			<version>${datafrk.version}</version>
 		</dependency>
-		
+
 		<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
 		<dependency>
 			<groupId>org.postgresql</groupId>
@@ -39,6 +39,14 @@
 			<version>${postgre.version}</version>
 		</dependency>
 	</dependencies>
+
+	<repositories>
+		<repository>
+			<id>pdos-repos</id>
+			<name>PDOS Releases</name>
+			<url>http://39.100.71.73:31021/repository/maven-public/</url>
+		</repository>
+	</repositories>
 
 	<build>
 		<plugins>
