@@ -5,20 +5,22 @@ SQL using Kubernetes style
 
 Add this dependency to your project's POM:
 
+### postgres
+
 ```xml
 <dependency>
   <groupId>io.github.kubesys</groupId>
-	<artifactId>datafrk-postgres</artifactId>
-	<version>2.0.0</version>
+  <artifactId>datafrk-postgres</artifactId>
+  <version>2.0.0</version>
 </dependency>
 
 <repositories>
-		<repository>
-			<id>pdos-repos</id>
-			<name>PDOS Releases</name>
-			<url>http://39.100.71.73:31021/repository/maven-public/</url>
-		</repository>
-	</repositories>
+  <repository>
+    <id>pdos-repos</id>
+    <name>PDOS Releases</name>
+    <url>http://39.100.71.73:31021/repository/maven-public/</url>
+  </repository>
+</repositories>
 ```
 
 ## docs
