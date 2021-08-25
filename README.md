@@ -11,7 +11,25 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>io.github.kubesys</groupId>
   <artifactId>datafrk-postgres</artifactId>
-  <version>2.0.0</version>
+  <version>2.0.1</version>
+</dependency>
+
+<repositories>
+  <repository>
+    <id>pdos-repos</id>
+    <name>PDOS Releases</name>
+    <url>http://39.100.71.73:31021/repository/maven-public/</url>
+  </repository>
+</repositories>
+```
+
+### mysql
+
+```xml
+<dependency>
+  <groupId>io.github.kubesys</groupId>
+  <artifactId>datafrk-mysql</artifactId>
+  <version>2.0.1</version>
 </dependency>
 
 <repositories>
