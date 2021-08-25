@@ -73,11 +73,9 @@ public abstract class DruidTable implements Table<ResultSet> {
 	private boolean check(String sql, String key) {
 		int idx = sql.indexOf(key);
 		String substring = sql.substring(idx + 1 + key.length());
-		try {
-			return substring.startsWith(this.name.toLowerCase() + " ");
-		} catch (Exception ex) {
-			return substring.startsWith(this.name.toLowerCase());
-		}
+		return (substring.length() > name.length()) 
+				? substring.startsWith(this.name.toLowerCase() + " ")
+						: substring.startsWith(this.name.toLowerCase());
 	}
 	
 }
