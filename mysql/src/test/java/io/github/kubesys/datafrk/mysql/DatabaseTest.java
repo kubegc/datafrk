@@ -29,13 +29,11 @@ public class DatabaseTest {
 		table(context.currentDatabase());
 	}
 
-	static String sql = "CREATE TABLE public.henry2019 (\r\n"
-			+ "    name character varying(256)  NOT NULL,\r\n"
-			+ "    artifactid character varying(128)  NOT NULL,\r\n"
-			+ "    created timestamp without time zone  NOT NULL)";
+	static String sql = "CREATE TABLE henry2019 (name varchar(512), namespace varchar(128), apigroup varchar(128), created datetime, updated datetime, "
+			+ "data json, primary key(name, namespace, apigroup)) DEFAULT CHARSET=utf8";
 	
 	protected static void table(Database database) throws Exception {
-		
+		System.out.println(database.tables().size());
 		System.out.println(database.checkTable(new CheckMysqlTable("henry2019")));
 		System.out.println(database.createTable(new CreateMysqlTableBuilder().sql(sql).build()));
 		System.out.println(database.checkTable(new CheckMysqlTable("henry2019")));

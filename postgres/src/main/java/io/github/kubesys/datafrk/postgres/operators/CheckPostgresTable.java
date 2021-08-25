@@ -4,14 +4,14 @@
  */
 package io.github.kubesys.datafrk.postgres.operators;
 
-import io.github.kubesys.datafrk.core.operators.CheckTable;
+import io.github.kubesys.datafrk.druid.operators.CheckDruidTable;
 
 /**
  * @author wuheng@iscas.ac.cn
  * @since 2.0.0
  *
  */
-public class CheckPostgresTable extends CheckTable {
+public class CheckPostgresTable extends CheckDruidTable {
 
 	public CheckPostgresTable(String name) {
 		super(name);

@@ -20,7 +20,7 @@ public class CheckMysqlDatabase extends CheckDatabase {
 
 	@Override
 	public String toSQL() {
-		return "SELECT * FROM information_schema.SCHEMATA where SCHEMA_NAME='" + name + "'";
+		return "SELECT * FROM information_schema.TABLES t where t.table_name='" + name + "'";
 	}
 
 }

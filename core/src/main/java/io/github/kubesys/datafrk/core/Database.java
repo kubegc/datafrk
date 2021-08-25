@@ -16,7 +16,7 @@ import io.github.kubesys.datafrk.core.operators.DropTable;
  *
  */
 public interface Database extends Schema {
-	
+
 	public boolean createTable(CreateTable createTable);
 	
 	public boolean checkTable(CheckTable checkTable);

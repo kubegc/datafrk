@@ -15,6 +15,7 @@ import io.github.kubesys.datafrk.core.Table;
 import io.github.kubesys.datafrk.core.operators.CheckTable;
 import io.github.kubesys.datafrk.core.operators.CreateTable;
 import io.github.kubesys.datafrk.core.operators.DropTable;
+import io.github.kubesys.datafrk.druid.operators.CheckDruidTable;
 
 /**
  * @author wuheng@iscas.ac.cn
@@ -51,12 +52,21 @@ public abstract class DruidDatabase implements Database {
 
 	@Override
 	public boolean checkTable(CheckTable checkTable) {
+		ResultSet rs = null;
 		try {
-			ResultSet rs = this.executor.execWithResult(checkTable.toSQL());
+			((CheckDruidTable) checkTable).setDatabase(executor.getConnection().getCatalog());
+			rs = this.executor.execWithResult(checkTable.toSQL());
 			rs.next();
 			return rs.getInt("num") != 0;
 		} catch (Exception ex) {
 			return false;
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+				}
+			}
 		}
 	}
 
@@ -76,6 +86,7 @@ public abstract class DruidDatabase implements Database {
 		this.tables();
 		return map.get(name);
 	}
+	
 	
 	public abstract String listTableSQL();
 	

@@ -4,14 +4,14 @@
  */
 package io.github.kubesys.datafrk.mysql.operators;
 
-import io.github.kubesys.datafrk.core.operators.CheckTable;
+import io.github.kubesys.datafrk.druid.operators.CheckDruidTable;
 
 /**
  * @author wuheng@iscas.ac.cn
  * @since 2.0.0
  *
  */
-public class CheckMysqlTable extends CheckTable {
+public class CheckMysqlTable extends CheckDruidTable {
 
 	public CheckMysqlTable(String name) {
 		super(name);
@@ -19,7 +19,8 @@ public class CheckMysqlTable extends CheckTable {
 
 	@Override
 	public String toSQL() {
-		return "SELECT * FROM information_schema.SCHEMATA where SCHEMA_NAME='" + name + "'";
+		return "SELECT count(*) as num FROM information_schema.TABLES t where "
+				+ "TABLE_NAME='" + name + "' and TABLE_SCHEMA = '" + database + "'";
 	}
 
 }
