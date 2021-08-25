@@ -4,12 +4,14 @@
  */
 package io.github.kubesys.datafrk.mysql;
 
+import java.sql.SQLException;
+
 import io.github.kubesys.datafrk.druid.DruidExecutor;
 import io.github.kubesys.datafrk.druid.DruidTable;
 
 /**
  * @author wuheng@iscas.ac.cn
- * @since 2.0.0
+ * @since 2.0.4
  *
  */
 public class MysqlTable extends DruidTable {
@@ -20,9 +22,14 @@ public class MysqlTable extends DruidTable {
 
 	@Override
 	public String schema() {
-		return this.executor.execWithValue(
-				"SELECT generate_create_table_statement('" + name + "')", 
-				"generate_create_table_statement").get(0);
+		try {
+			return this.executor.execWithValue(
+					"show create table " + executor.getConnection().getCatalog() + "." + name, 
+					"Create Table").get(0);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
 }
