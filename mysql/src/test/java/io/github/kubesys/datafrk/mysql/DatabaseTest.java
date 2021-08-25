@@ -25,8 +25,8 @@ public class DatabaseTest {
 
 	public static void main(String[] args) throws Exception {
 		DataContext context = DataContextBuilder.createDataContext();
-		database(context);
-//		table(context.currentDatabase());
+//		database(context);
+		table(context.currentDatabase());
 	}
 
 	static String sql = "CREATE TABLE public.henry2019 (\r\n"
@@ -49,7 +49,7 @@ public class DatabaseTest {
 	}
 
 	protected static void database(DataContext context) throws InterruptedException {
-//		System.out.println(context.currentDatabase().schema());
+		System.out.println(context.currentDatabase().schema());
 		System.out.println(context.checkDababase(new CheckMysqlDatabase("abc")));
 		Thread.sleep(10000);
 		System.out.println(context.createDatabase(new CreateMysqlDatabase("abc")));

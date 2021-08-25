@@ -23,4 +23,6 @@ public interface DataContext {
 	
 	public boolean dropDababase(DropDatabase dropDatabase);
 	
+	public String defaultDriver();
+	
 }

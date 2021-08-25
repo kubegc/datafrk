@@ -6,7 +6,7 @@
 
 	<groupId>io.github.kubesys</groupId>
 	<artifactId>datafrk-postgres</artifactId>
-	<version>2.0.0</version>
+	<version>2.0.1</version>
 	<packaging>jar</packaging>
 
 	<name>datafrk-postgres</name>
@@ -14,7 +14,6 @@
 
 	<properties>
 		<postgre.version>42.2.23</postgre.version>
-		<datafrk.version>2.0.0</datafrk.version>
 	</properties>
 
 	<licenses>
@@ -29,7 +28,7 @@
 		<dependency>
 			<groupId>io.github.kubesys</groupId>
 			<artifactId>datafrk-alibaba-druid</artifactId>
-			<version>${datafrk.version}</version>
+			<version>${project.version}</version>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->

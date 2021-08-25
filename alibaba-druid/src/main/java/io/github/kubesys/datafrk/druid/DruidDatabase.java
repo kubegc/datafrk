@@ -80,4 +80,5 @@ public abstract class DruidDatabase implements Database {
 	public abstract String listTableSQL();
 	
 	public abstract String listTableLabel();
+	
 }

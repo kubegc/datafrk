@@ -6,7 +6,7 @@
 
 	<groupId>io.github.kubesys</groupId>
 	<artifactId>datafrk-alibaba-druid</artifactId>
-	<version>2.0.0</version>
+	<version>2.0.1</version>
 	<packaging>jar</packaging>
 
 	<name>datafrk-alibaba-druid</name>
@@ -14,7 +14,6 @@
 
 	<properties>
 		<druid.version>1.2.6</druid.version>
-		<datafrk.version>2.0.0</datafrk.version>
 	</properties>
 
 	<licenses>
@@ -36,7 +35,7 @@
 		<dependency>
 			<groupId>io.github.kubesys</groupId>
 			<artifactId>datafrk-core</artifactId>
-			<version>${datafrk.version}</version>
+			<version>${project.version}</version>
 		</dependency>
 	</dependencies>
 

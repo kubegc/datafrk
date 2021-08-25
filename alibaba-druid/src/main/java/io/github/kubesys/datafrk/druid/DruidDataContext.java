@@ -9,7 +9,6 @@ import java.util.Properties;
 import com.alibaba.druid.pool.DruidDataSource;
 
 import io.github.kubesys.datafrk.core.DataContext;
-import io.github.kubesys.datafrk.core.operators.CheckDatabase;
 import io.github.kubesys.datafrk.core.operators.CreateDatabase;
 import io.github.kubesys.datafrk.core.operators.DropDatabase;
 
@@ -46,11 +45,6 @@ public abstract class DruidDataContext implements DataContext {
 	@Override
 	public boolean createDatabase(CreateDatabase createDatabase) {
 		return this.executor.execWithStatus(createDatabase.toSQL());
-	}
-
-	@Override
-	public boolean checkDababase(CheckDatabase checkDatabase) {
-		return this.executor.execWithValue(checkDatabase.toSQL(), "datname").size() != 0;
 	}
 
 	@Override

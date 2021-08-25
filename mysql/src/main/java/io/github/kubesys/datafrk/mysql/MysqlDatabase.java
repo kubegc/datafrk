@@ -4,6 +4,7 @@
  */
 package io.github.kubesys.datafrk.mysql;
 
+import java.sql.SQLException;
 import java.util.Collection;
 
 import io.github.kubesys.datafrk.core.Table;
@@ -34,14 +35,18 @@ public class MysqlDatabase extends DruidDatabase {
 	
 	@Override
 	public String listTableSQL() {
-		return "SELECT relname FROM pg_class c WHERE relkind = 'r' "
-				+ "AND relname not like 'pg_%' AND relname not like 'sql_%' "
-				+ "ORDER BY relname";
+		try {
+			return "SELECT DISTINCT * FROM information_schema.TABLES t "
+					+ "where TABLE_SCHEMA = '" + executor.getConnection().getCatalog() + "'";
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override
 	public String listTableLabel() {
-		return "relname";
+		return "TABLE_NAME";
 	}
 
 }
