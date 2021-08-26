@@ -25,7 +25,7 @@ public class DatabaseTest {
 
 	public static void main(String[] args) throws Exception {
 		DataContext context = DataContextBuilder.createDataContext();
-//		database(context);
+		database(context);
 		table(context.currentDatabase());
 	}
 
