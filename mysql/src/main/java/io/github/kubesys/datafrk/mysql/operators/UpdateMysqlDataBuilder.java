@@ -23,4 +23,12 @@ public class UpdateMysqlDataBuilder extends UpdateDataBuilder<UpdateMysqlDataBui
 		return this;
 	}
 
+	// input: data.metadata.name
+	// output: JSON_EXTRACT(data, '$.metadata.name')
+	@Override
+	public String toJson(String value) {
+		int idx = value.indexOf(".");
+		return " JSON_EXTRACT(" + value.substring(0, idx) + ", '$." + value.substring(idx + 1) + "')";
+	}
+
 }

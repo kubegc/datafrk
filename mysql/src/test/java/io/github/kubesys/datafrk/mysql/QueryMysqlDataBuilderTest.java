@@ -14,11 +14,15 @@ import io.github.kubesys.datafrk.mysql.operators.QueryMysqlDataBuilder;
 public class QueryMysqlDataBuilderTest  {
 
 	public static void main(String[] args) throws Exception {
-		System.out.println(new QueryMysqlDataBuilder()
-				.selectAll("test")
-				.where("namespace").eq("default")
-				.limit(1, 1)
-				.build().toSQL());
+		String sql = new QueryMysqlDataBuilder()
+				.selectAll("abc")
+				.where("name").like("abc")
+				.and("data.metadata.name", true).like("abc")
+				.orderBy("updated", true)
+				.limit(2, 1)
+				.build().toSQL();
+		
+		System.out.println(sql);
 	}
 	
 }

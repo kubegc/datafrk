@@ -22,5 +22,18 @@ public abstract class QueryDataBuilder<S, T> extends ConditionBuilder<S, T> {
 		return (S) this;
 	}
 	
+	public S orderBy(String item) {
+		return orderBy(item, true);
+	}
+	
+	public S orderBy(String item, boolean desc) {
+		if (desc) {
+			stringBuilder.append(" ORDER BY " + item + " desc");
+		} else {
+			stringBuilder.append(" ORDER BY " + item + " asc");
+		}
+		return (S) this;
+	}
+	
 	public abstract S limit(int limit, int page);
 }

@@ -19,7 +19,7 @@ public class InsertMysqlDataBuilder extends InsertDataBuilder<InsertMysqlDataBui
 		if (!json) {
 			return beginValue(value);
 		}
-		stringBuilder.append(" VALUES('" + value + "'::json");
+		stringBuilder.append(" VALUES('" + value + "'");
 		return this;
 	}
 
@@ -28,7 +28,7 @@ public class InsertMysqlDataBuilder extends InsertDataBuilder<InsertMysqlDataBui
 		if (!json) {
 			return andValue(value);
 		}
-		stringBuilder.append(", '" + value + "'::json");
+		stringBuilder.append(", '" + value + "'");
 		return this;
 	}
 
@@ -37,7 +37,7 @@ public class InsertMysqlDataBuilder extends InsertDataBuilder<InsertMysqlDataBui
 		if (!json) {
 			return endValue(value);
 		}
-		stringBuilder.append(", '" + value + "'::json)");
+		stringBuilder.append(", '" + value + "')");
 		return this;
 	}
 	
