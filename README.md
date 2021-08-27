@@ -41,13 +41,16 @@ Add this dependency to your project's POM:
 </repositories>
 ```
 
-## useage
+# usage
 
 - postgres
   - [create datacontext](create-postgres-datacontext)
   - [create table](create-postgres-table)
+- mysql
+  - [create datacontext](create-mysql-datacontext)
+  - [create table](create-mysql-table)
 
-### create-postgres-datacontext
+## create-postgres-datacontext
 
 ```
 Properties props = new Properties(); 
@@ -69,7 +72,7 @@ Thread.sleep(10000);
 System.out.println(context.dropDababase(new DropPostgresDatabase("abc")));
 ```
 
-### create-postgres-table
+## create-postgres-table
 
 ```
 String sql = "CREATE TABLE public.henry2019 (\r\n"
@@ -90,11 +93,8 @@ Thread.sleep(10000);
 System.out.println(database.dropTable(new DropPostgresTable("henry2019")));
 ```
 
-- mysql
-  - [create datacontext](create-mysql-datacontext)
-  - [create table](create-mysql-table)
 
-### create-mysql-datacontext
+## create-mysql-datacontext
 
 ```
 Properties props = new Properties(); 
@@ -134,8 +134,9 @@ for (Table<?> t : tables) {
 }
 Thread.sleep(10000);
 System.out.println(database.dropTable(new DropMysqlTable("henry2019")));
+```
 
-## docs
+# docs
 
 **Now postgres and mariadb/mysql support JSON** 
 
