@@ -41,7 +41,28 @@ Add this dependency to your project's POM:
 </repositories>
 ```
 
+
 ## docs
+
+**Now postgres and mariadb/mysql support JSON** 
+
+
+For example, 
+
+```#Postgres
+use kube;
+select * from pods where data->'metadata'->>'activeName' like '%database%'
+```
+more details see [postgres docs](https://www.postgresql.org/docs/12/functions-json.html)
+
+```#Mysql
+use kube;
+select * from pods where JSON_EXTRACT(data, '$.metadata.name') like '%database%'
+```
+more details see [mysql docs](https://dev.mysql.com/doc/refman/8.0/en/json-search-functions.html)
+
+
+
 
 - [Sonatype](https://mp.weixin.qq.com/s?__biz=Mzg2MDYzODI5Nw==&mid=2247493958&idx=1&sn=d7e47334823f58db7ce012783045f382&source=41#wechat_redirect)
 
