@@ -36,11 +36,12 @@ public class QueryMysqlDataBuilder extends QueryDataBuilder<QueryMysqlDataBuilde
 
 	// input: data.metadata.name
 	// output: JSON_EXTRACT(data, '$.metadata.name')
+	// https://www.yuque.com/kubesys/kube-frontend/lnbgaa
 	@Override
 	public String toJson(String value) {
 		int idx = value.indexOf(".");
 		return " JSON_EXTRACT(" + value.substring(0, idx)
-		           + ", '$." + value.substring(idx + 1) + "')";
+		           + ", '$." + value.substring(idx + 1).replaceAll("#", ".") + "')";
 	}
 	
 }

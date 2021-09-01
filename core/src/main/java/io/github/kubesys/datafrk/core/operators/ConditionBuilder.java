@@ -25,6 +25,14 @@ public abstract class ConditionBuilder<S, T> extends AbstractBuilder<S, T> {
 		return (S) this;
 	}
 	
+	public S where(String prefix, String label, boolean json) {
+		if (!json) {
+			return where(label);
+		}
+		stringBuilder.append(" WHERE " + toJson(prefix + "." + label));
+		return (S) this;
+	}
+	
 	public S and(String label) {
 		stringBuilder.append(" and " + label);
 		return (S) this;
@@ -35,6 +43,14 @@ public abstract class ConditionBuilder<S, T> extends AbstractBuilder<S, T> {
 			return and(label);
 		}
 		stringBuilder.append(" and " + toJson(label));
+		return (S) this;
+	}
+	
+	public S and(String prefix, String label, boolean json) {
+		if (!json) {
+			return and(label);
+		}
+		stringBuilder.append(" and " + toJson(prefix + "." + label));
 		return (S) this;
 	}
 	

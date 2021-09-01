@@ -41,7 +41,8 @@ public class QueryPostgresDataBuilder extends QueryDataBuilder<QueryPostgresData
 			if (i == 0) {
 				sb.append(" ").append(splits[i]);
 			} else if (i == splits.length - 1) {
-				sb.append("->>'").append(splits[i]).append("'");
+				// https://www.yuque.com/kubesys/kube-frontend/lnbgaa#VOZA2
+				sb.append("->>'").append(splits[i].replace("#", ".")).append("'");
 			} else {
 				sb.append("->'").append(splits[i]).append("'");
 			}

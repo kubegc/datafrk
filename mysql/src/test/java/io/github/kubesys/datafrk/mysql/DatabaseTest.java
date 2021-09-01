@@ -29,7 +29,8 @@ public class DatabaseTest {
 		table(context.currentDatabase());
 	}
 
-	static String sql = "CREATE TABLE henry2019 (name varchar(512), namespace varchar(128), apigroup varchar(128), created datetime, updated datetime, "
+	static String sql = "CREATE TABLE henry2019 (name varchar(512), namespace varchar(128), "
+			+ "apigroup varchar(128), created datetime, updated datetime, "
 			+ "data json, primary key(name, namespace, apigroup)) DEFAULT CHARSET=utf8";
 	
 	protected static void table(Database database) throws Exception {
